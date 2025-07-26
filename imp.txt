@@ -1,0 +1,31 @@
+----------------Accession Range----------------
+
+
+
+db.accessiontrackers.insertMany([
+  {
+    course: "MCA",
+    startRange: 55051,
+    current: 55218
+  },
+  {
+    course: "BCA",
+    startRange: 82451,
+    current: 82656
+  },
+  {
+    course: "BBA",
+    startRange: 30001,
+    current: 31725
+  },
+  {
+    course: "BCA CTIS",
+    startRange: 65001,
+    current: 65001
+  },
+  {
+    course: "BCA AI",
+    startRange: 90001,
+    current: 90001
+  }
+])

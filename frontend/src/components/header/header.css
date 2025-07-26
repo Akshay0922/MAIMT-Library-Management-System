@@ -12,23 +12,25 @@
 .bookmark-ribbon {
   position: absolute;
   right: 0;
-  width: 270px;
+  width: 231px;
   height: 31px;
   background-color: #03045E;
-  clip-path: polygon(20px 0, 100% 0, 100% 100%, 20px 100%, 0 50%);
+  border-radius: 20px;
+  /* clip-path: polygon(20px 0, 100% 0, 100% 100%, 20px 100%, 0 50%); */
   display: flex;
   align-items: center;
   color: white;
   font-weight: bold;
   font-family: 'Poppins', sans-serif;
   top: 6px;
+  right: 20px;
   letter-spacing: 1px;
   z-index: 100;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .bookmark-text {
-  padding-left: 3rem;
+  padding-left: 1.5rem;
   font-size: 12px;
 }
 
@@ -54,7 +56,7 @@
 
 .heading-line{
     position: absolute;
-    left: 179px;
+    left: 160px;
     color: #03045E;
     font-weight: 600;
     font-size: 20px;
@@ -64,26 +66,47 @@
 
 .heading-line-fullform{
   position: absolute;
-    left: 179px;
+    left: 160px;
     color: #03045E;
     font-size: 12px;
     font-family: 'Roboto', sans-serif;
     top: 40%;
 }
 
-.contact-info{
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    bottom: 11px;
-    right: 80px;
-    font-weight: 500;
+.contact-info {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  bottom: 11px;
+  right: 80px;
+  font-weight: 500;
 }
 
-.contact-info span{
-    color: #03045E;
-    margin: 30px;
-    margin-left: 11px;
-    font-weight: 500;
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.info-item a {
+  display: flex;
+  align-items: center;
+  color: #03045E;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.icon {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.icon:hover {
+  color: #FCA311;
+}
+
+.icon:active{
+  font-size: 14px;
 }
