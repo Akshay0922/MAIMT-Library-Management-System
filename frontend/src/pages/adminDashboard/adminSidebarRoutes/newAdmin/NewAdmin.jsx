@@ -105,7 +105,7 @@ export const NewAdmin = () => {
                       localStorage.setItem("admin", JSON.stringify(res.data.admin))
                       toast.success(res.data.message)
                       resetForm();
-                      navigate('/admin-dashboard');
+                      navigate('/new-admin-login');
                     } else {
                       toast.error(res.data.message || "Signup failed!");
                     }

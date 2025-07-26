@@ -59,7 +59,7 @@ const handleSubmit = async (values, { setSubmitting }) => {
     });
 
     toast.success(res.data.message);  // show success toast
-    setTimeout(() => navigate('/student-dashboard'), 1500);  // redirect after 1.5s
+    setTimeout(() => navigate('/admin-dashboard'), 1500);  // redirect after 1.5s
   } catch (err) {
     const msg = err.response?.data?.message || 'Failed to change password';
     toast.error(msg); 
