@@ -5,7 +5,7 @@ const bookSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
-  bookName:String,
+ 
   title: {
     type: String,
     required: true

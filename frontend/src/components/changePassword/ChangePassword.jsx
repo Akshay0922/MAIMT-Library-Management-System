@@ -53,9 +53,9 @@ export const ChangePassword = () => {
 const handleSubmit = async (values, { setSubmitting }) => {
   try {
     const res = await axios.post("http://localhost:3000/admin/change-password", {
-      adminId: user.id,  
-      currentPassword: values.currentPassword,
-      newPassword: values.newPassword,
+      adminId:user.id,  
+      currentPassword:values.currentPassword,
+      newPassword:values.newPassword,
     });
 
     toast.success(res.data.message);  // show success toast
