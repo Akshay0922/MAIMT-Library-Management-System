@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
@@ -9,7 +10,6 @@ import './changePassword.css';
 
 export const ChangePassword = () => {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem('user'));
 
   const [showCurrent, setShowCurrent] = useState(false);
   const [showNew, setShowNew] = useState(false);
@@ -48,23 +48,25 @@ export const ChangePassword = () => {
       .required('Confirm your new password'),
   });
 
-  const handleSubmit = async (values, { setSubmitting }) => {
-    try {
-      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/change-password`, {
-        id: user.id,
-        currentPassword: values.currentPassword,
-        newPassword: values.newPassword,
-      });
+  const user = JSON.parse(localStorage.getItem('admin'));
 
-      toast.success(res.data.message);
-      setTimeout(() => navigate('/student-dashboard'), 1500);
-    } catch (err) {
-      const msg = err.response?.data?.message || 'Failed to change password';
-      toast.error(msg);
-    } finally {
-      setSubmitting(false);
-    }
-  };
+const handleSubmit = async (values, { setSubmitting }) => {
+  try {
+    const res = await axios.post("http://localhost:3000/admin/change-password", {
+      adminId: user.id,  
+      currentPassword: values.currentPassword,
+      newPassword: values.newPassword,
+    });
+
+    toast.success(res.data.message);  // show success toast
+    setTimeout(() => navigate('/student-dashboard'), 1500);  // redirect after 1.5s
+  } catch (err) {
+    const msg = err.response?.data?.message || 'Failed to change password';
+    toast.error(msg); 
+  } finally {
+    setSubmitting(false);  
+  }
+};
 
   return (
     <div className="change-password-wrapper">

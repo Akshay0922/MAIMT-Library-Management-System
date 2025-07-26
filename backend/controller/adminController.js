@@ -95,3 +95,34 @@ exports.login = async (req, res) => {
     });
   }
 };
+
+
+exports.changePassword = async (req, res) => {
+  try {
+    const {  adminId, currentPassword, newPassword } = req.body;
+
+const admin = await Admin.findOne({ _id: adminId });
+    if (!admin) {
+      return res.status(404).json({ message: "Admin not found", success: false });
+    }
+    const isMatch = await bcrypt.compare(currentPassword, admin.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Current password is incorrect", success: false });
+    }
+
+    const hashPassword = await bcrypt.hash(newPassword, 10);
+    admin.password = hashPassword;
+    await admin.save();
+
+    return res.status(200).json({ message: "Password changed successfully", success: true });
+
+  } catch (error) {
+    console.error("Change password error:", error.message);
+    return res.status(500).json({
+      message: "Server error",
+      error: error.message,
+      success: false,
+    });
+  }
+};
+

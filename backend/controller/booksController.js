@@ -1,66 +1,75 @@
+// controllers/bookController.js
+
 const Book = require("../model/bookSchema");
-const BookCopie  = require("../model/bookCopy"); // Agar copies bhi create kar rahi hai
-const AccessionTracker = require("../model/accessionSchema"); // Accessions ke liye
-
-
+const BookCopie = require("../model/bookCopy");
+const AccessionTracker = require("../model/accessionSchema");
 
 exports.addBooks = async (req, res) => {
   try {
+    //  console.log("📦 Request Body:", req.body);
     const {
-      title, author, edition, publisher,
-      yearOfPublication, pages, isbn,
+      entryDate, 
+      bookName,// <-- ADD THIS
+      title, author, edition, volume,
+      publisher, year, pages, isbn,
       department, course, cost,
-      rackNo, shelfNo, copies
+      rackNumber, shelfNo, place,
+      vendor, billNo, billDate,
+      noOfBooks // <-- USE this instead of "copies"
     } = req.body;
 
-    // Step 1: Save book
+    // ✅ Step 1: Save book
     const book = new Book({
-      title, author, edition, publisher,
-      yearOfPublication, pages, isbn,
-      department, course, cost
+      entryDate,bookName, title, author, edition, volume,
+      publisher, year, pages, isbn,
+      department, course, cost,
+      rackNumber, shelfNo, place,
+      vendor, billNo, billDate,
+      noOfBooks
     });
 
     const savedBook = await book.save();
 
-    // Step 2: Get/Create accession tracker
+    // ✅ Step 2: Get/Create Accession Tracker
     let tracker = await AccessionTracker.findOne({ course });
 
     if (!tracker) {
       tracker = new AccessionTracker({
         course,
         startRange: 1000,
-        current: 999, // So that ++ starts from 1000
+        current: 999
       });
     }
 
-    // Step 3: Create multiple copies
-    const newCopies = [];
+    // ✅ Step 3: Create multiple Book Copies
+    const copyPromises = [];
 
-    for (let i = 0; i < copies; i++) {
+    for (let i = 0; i < noOfBooks; i++) {
       tracker.current += 1;
 
       const copy = new BookCopie({
         book: savedBook._id,
         accessionNumber: tracker.current,
-        rackNo,
+        rackNumber,
         shelfNo
       });
 
-      newCopies.push(copy.save());
+      copyPromises.push(copy.save());
     }
 
-    await Promise.all(newCopies);
+    await Promise.all(copyPromises);
     await tracker.save();
 
+    // ✅ Success Response
     res.status(201).json({
-      message: `${copies} Copies Added Successfully`,
+      message: `${noOfBooks} copies added successfully`,
       bookId: savedBook._id,
-      fromAccession: tracker.current - copies + 1,
+      fromAccession: tracker.current - noOfBooks + 1,
       toAccession: tracker.current
     });
 
   } catch (err) {
     console.error("Add Book Error:", err.message);
-    res.status(500).json({ error: "Something went wrong" });
+    res.status(500).json({ error: err.message });
   }
 };
