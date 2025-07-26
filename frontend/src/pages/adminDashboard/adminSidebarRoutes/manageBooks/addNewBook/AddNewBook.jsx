@@ -20,7 +20,7 @@ const validationSchema = Yup.object().shape({
   pages: Yup.number().min(1).required('Pages required'),
   isbn: Yup.string().required('ISBN is required'),
   noOfBooks: Yup.number().min(1).required('Number of books required'),
-rackNumber: Yup.string().required('Rack number is required'), // ✅ Add this
+  rackNumber: Yup.string().required('Rack number is required'),
   shelfNo: Yup.string().required('Shelf number is required'),
   publisher: Yup.string().required('Publisher is required'),
   year: Yup.number().min(1000).max(new Date().getFullYear()).required('Publisher Year is required'),
@@ -48,58 +48,59 @@ export const AddNewBook = () => {
           <Card className="p-4 add-book-container">
             <h5 className="text-center fw-bold mb-4 add-book-heading">ADD NEW BOOK</h5>
 
-<Formik
-  initialValues={{
-    entryDate: "",
-    bookName:"",
-    title: "",
-    author: "",
-    edition: "",
-    volume: "",
-    department: "",
-    course: "",
-    pages: "",
-    isbn: "",
-    noOfBooks: "",
-   rackNumber: "",
-    shelfNo: "",
-    publisher: "",
-    year: "",
-    place: "",
-    vendor: "",
-    billNo: "",
-    billDate: "",
-    cost: ""
-  }}
-  validationSchema={validationSchema}
-onSubmit={async (values, { resetForm }) => {
-  try {
-    const payload = {
-      ...values,
-      pages: Number(values.pages),
-      noOfBooks: Number(values.noOfBooks),
-      year: Number(values.year),
-      cost: Number(values.cost),
-    };
+            <Formik
+              initialValues={{
+                entryDate: "",
+                bookName: "",
+                title: "",
+                author: "",
+                edition: "",
+                volume: "",
+                department: "",
+                course: "",
+                pages: "",
+                isbn: "",
+                noOfBooks: "",
+                rackNumber: "",
+                shelfNo: "",
+                publisher: "",
+                year: "",
+                place: "",
+                vendor: "",
+                billNo: "",
+                billDate: "",
+                cost: ""
+              }}
+              validationSchema={validationSchema}
+              onSubmit={async (values, { resetForm }) => {
+                try {
+                  const payload = {
+                    ...values,
+                    pages: Number(values.pages),
+                    noOfBooks: Number(values.noOfBooks),
+                    year: Number(values.year),
+                    cost: Number(values.cost),
+                  };
 
-    const response = await axios.post("http://localhost:3000/library/add-books", payload, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+                  const response = await axios.post("http://localhost:3000/library/add-books", payload, {
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                  });
 
-    if (response.status === 200 || response.status === 201) {
-      toast.success("Book added successfully!");
-      resetForm();
-    } else {
-      toast.error("Something went wrong");
-    }
-  } catch (error) {
-    toast.error("Server error");
-    console.error("Axios error:", error);
-  }
-}}
->
+                  if (response.status === 200 || response.status === 201) {
+                    toast.success("Book added successfully!");
+                    resetForm();
+                    navigate('/manage-books');
+                  } else {
+                    toast.error("Something went wrong");
+                  }
+                } catch (error) {
+                  toast.error("Server error");
+                  console.error("Axios error:", error);
+                }
+              }}
+            >
               {({ handleSubmit, handleChange, handleBlur, values, touched, errors }) => (
                 <Form noValidate onSubmit={handleSubmit} className="form-data">
                   <Row className="mb-3">
