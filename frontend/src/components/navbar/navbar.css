@@ -29,9 +29,9 @@
   background-color: #FFD60A;
   border-radius: 50px;
   z-index: 0;
-  transition: transform 0.3s ease, width 0.3s ease;
-  will-change: transform, width;
+  transition: all 0.3s ease;
 }
+
 
 .main-navbar .nav-link::after {
   display: none;

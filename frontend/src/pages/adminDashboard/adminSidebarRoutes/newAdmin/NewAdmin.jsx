@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { Container, Form, Button, Card, ProgressBar, Row, Col } from 'react-bootstrap';
 
@@ -13,7 +13,6 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from 'axios';
 
 import { AdminSidebar } from '../AdminSidebar';
-
 import { AdminLogoutButton } from '../../../../components/adminLogoutButton/AdminLogoutButton';
 
 import './newAdmin.css';
@@ -41,10 +40,7 @@ const validationSchema = Yup.object().shape({
     .required('Confirm Password is required'),
 });
 
-
-
 export const NewAdmin = () => {
-  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState('');
@@ -76,175 +72,182 @@ export const NewAdmin = () => {
     );
   };
 
-
   return (
-    <>
-      <div className="admin-dashboard">
-        <AdminSidebar />
+    <div className="admin-dashboard">
+      <AdminSidebar />
 
-        <div className="admin-signup-main-content shrink">
-          <AdminLogoutButton />
-          <Container className="d-flex justify-content-center align-items-center h-100">
-            <Card className="p-4 signup-container">
-              <h5 className="text-center fw-bold mb-4 signup-heading">ADMIN SIGNUP</h5>
+      <div className="admin-signup-main-content shrink">
+        <AdminLogoutButton />
+        <Container className="d-flex justify-content-center align-items-center h-100">
+          <Card className="p-4 signup-container">
+            <h5 className="text-center fw-bold mb-4 signup-heading">ADMIN SIGNUP</h5>
 
-              <Formik
-                initialValues={{
-                  adminName: '',
-                  adminEmail: '',
-                  adminId: '',
-                  password: '',
-                  confirmPassword: '',
-                }}
-                validationSchema={validationSchema}
-                onSubmit={async (values, { resetForm }) => {
-                  try {
-                    const res = await axios.post("http://localhost:3000/admin/signup", values)
-                    if (res.data.success) {
-                      localStorage.setItem("token", res.data.token)
-                      localStorage.setItem("admin", JSON.stringify(res.data.admin))
-                      toast.success(res.data.message)
-                      resetForm();
-                      navigate('/new-admin-login');
-                    } else {
-                      toast.error(res.data.message || "Signup failed!");
-                    }
-                  } catch (err) {
-
-                    if (err.response && err.response.data && err.response.data.message) {
-                      toast.error(err.response.data.message);
-                    } else {
-                      toast.error('Something went wrong during signup!');
-                    }
-                    console.error("Signup error:", err.response?.data || err.message);
-                  }
-                }}
-              >
-                {({
-                  handleSubmit,
-                  handleChange,
-                  handleBlur,
-                  values,
-                  touched,
-                  errors,
-                  setFieldValue,
-                }) => {
-                  const handlePasswordChange = (e) => {
-                    const password = e.target.value;
-                    setFieldValue('password', password);
-                    setPasswordStrength(getPasswordStrength(password));
+            <Formik
+              initialValues={{
+                adminName: '',
+                adminEmail: '',
+                adminNo: '',
+                password: '',
+                confirmPassword: '',
+              }}
+              validationSchema={validationSchema}
+              onSubmit={async (values, { resetForm, setSubmitting }) => {
+                try {
+                  const cleanedValues = {
+                    ...values,
+                    adminName: values.adminName.trim(),
+                    adminEmail: values.adminEmail.trim(),
+                    adminNo: values.adminNo.trim(),
                   };
-                  return (
-                    <Form noValidate onSubmit={handleSubmit} className="form-data">
-                      <Form.Group className="mb-3">
-                        <Form.Label>Admin Name</Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="adminName"
-                          placeholder="Enter full name"
-                          value={values.adminName}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          isInvalid={touched.adminName && !!errors.adminName}
-                        />
-                        <Form.Control.Feedback type="invalid">{errors.adminName}</Form.Control.Feedback>
-                      </Form.Group>
 
-                      <Form.Group className="mb-3">
-                        <Form.Label>Admin Email</Form.Label>
-                        <Form.Control
-                          type="email"
-                          name="adminEmail"
-                          placeholder="Enter email"
-                          value={values.adminEmail}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          isInvalid={touched.adminEmail && !!errors.adminEmail}
-                        />
-                        <Form.Control.Feedback type="invalid">{errors.adminEmail}</Form.Control.Feedback>
-                      </Form.Group>
+                  const res = await axios.post("http://localhost:3000/admin/signup", cleanedValues);
 
-                      <Form.Group className="mb-3">
-                        <Form.Label>Admin Number</Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="adminNo"
-                          placeholder="Enter 6-digit admin Number"
-                          value={values.adminNo}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          isInvalid={touched.adminNo && !!errors.adminNo}
-                        />
-                        <Form.Control.Feedback type="invalid">{errors.adminNo}</Form.Control.Feedback>
-                      </Form.Group>
+                  if (res.data.success) {
+                    toast.success(`${values.adminName} registered successfully as a new admin!`);
+                    resetForm(); // Clear form fields
+                  } else {
+                    toast.error(res.data.message || "Signup failed!");
+                  }
+                } catch (err) {
+                  if (err.response?.data?.message) {
+                    toast.error(err.response.data.message);
+                  } else {
+                    toast.error('Something went wrong during signup!');
+                  }
+                  console.error("Signup error:", err.response?.data || err.message);
+                } finally {
+                  setSubmitting(false);
+                }
+              }}
+            >
+              {({
+                handleSubmit,
+                handleChange,
+                handleBlur,
+                values,
+                touched,
+                errors,
+                setFieldValue,
+                isSubmitting,
+              }) => {
+                const handlePasswordChange = (e) => {
+                  const password = e.target.value;
+                  setFieldValue('password', password);
+                  setPasswordStrength(getPasswordStrength(password));
+                };
 
-                      <Row>
-                        <Col md={6}>
-                          <Form.Group className="mb-3 position-relative">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control
-                              type={showPassword ? 'text' : 'password'}
-                              name="password"
-                              placeholder="Enter password"
-                              value={values.password}
-                              onChange={handlePasswordChange}
-                              onBlur={handleBlur}
-                              isInvalid={touched.password && !!errors.password}
-                            />
-                            {values.password && (
-                              <>
-                                <span
-                                  className="password-toggle-icon"
-                                  onClick={() => setShowPassword(!showPassword)}
-                                >
-                                  {showPassword ? <FaEyeSlash /> : <FaEye />}
-                                </span>
-                                {renderStrengthBar()}
-                              </>
-                            )}
-                            <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
-                          </Form.Group>
-                        </Col>
+                return (
+                  <Form noValidate onSubmit={handleSubmit} className="form-data">
+                    <Form.Group className="mb-3">
+                      <Form.Label>Admin Name</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="adminName"
+                        placeholder="Enter full name"
+                        value={values.adminName}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        isInvalid={touched.adminName && !!errors.adminName}
+                      />
+                      <Form.Control.Feedback type="invalid">{errors.adminName}</Form.Control.Feedback>
+                    </Form.Group>
 
-                        <Col md={6}>
-                          <Form.Group className="mb-3 position-relative">
-                            <Form.Label>Confirm Password</Form.Label>
-                            <Form.Control
-                              type={showConfirmPassword ? 'text' : 'password'}
-                              name="confirmPassword"
-                              placeholder="Confirm password"
-                              value={values.confirmPassword}
-                              onChange={handleChange}
-                              onBlur={handleBlur}
-                              isInvalid={touched.confirmPassword && !!errors.confirmPassword}
-                            />
-                            {values.confirmPassword && (
+                    <Form.Group className="mb-3">
+                      <Form.Label>Admin Email</Form.Label>
+                      <Form.Control
+                        type="email"
+                        name="adminEmail"
+                        placeholder="Enter email"
+                        value={values.adminEmail}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        isInvalid={touched.adminEmail && !!errors.adminEmail}
+                      />
+                      <Form.Control.Feedback type="invalid">{errors.adminEmail}</Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group className="mb-3">
+                      <Form.Label>Admin Number</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="adminNo"
+                        placeholder="Enter 6-digit admin number"
+                        value={values.adminNo}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        isInvalid={touched.adminNo && !!errors.adminNo}
+                      />
+                      <Form.Control.Feedback type="invalid">{errors.adminNo}</Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Row>
+                      <Col md={6}>
+                        <Form.Group className="mb-3 position-relative">
+                          <Form.Label>Password</Form.Label>
+                          <Form.Control
+                            type={showPassword ? 'text' : 'password'}
+                            name="password"
+                            placeholder="Enter password"
+                            value={values.password}
+                            onChange={handlePasswordChange}
+                            onBlur={handleBlur}
+                            isInvalid={touched.password && !!errors.password}
+                          />
+                          {values.password && (
+                            <>
                               <span
                                 className="password-toggle-icon"
-                                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                onClick={() => setShowPassword(!showPassword)}
                               >
-                                {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                                {showPassword ? <FaEyeSlash /> : <FaEye />}
                               </span>
-                            )}
-                            <Form.Control.Feedback type="invalid">{errors.confirmPassword}</Form.Control.Feedback>
-                          </Form.Group>
-                        </Col>
-                      </Row>
+                              {values.password.length > 2 && renderStrengthBar()}
+                            </>
+                          )}
+                          <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
+                        </Form.Group>
+                      </Col>
 
-                      <Button className="w-100 submit-btn" type="submit">REGISTER ADMIN</Button>
-                    </Form>
-                  );
-                }}
-              </Formik>
+                      <Col md={6}>
+                        <Form.Group className="mb-3 position-relative">
+                          <Form.Label>Confirm Password</Form.Label>
+                          <Form.Control
+                            type={showConfirmPassword ? 'text' : 'password'}
+                            name="confirmPassword"
+                            placeholder="Confirm password"
+                            value={values.confirmPassword}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            isInvalid={touched.confirmPassword && !!errors.confirmPassword}
+                          />
+                          {values.confirmPassword && (
+                            <span
+                              className="password-toggle-icon"
+                              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                            >
+                              {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                            </span>
+                          )}
+                          <Form.Control.Feedback type="invalid">{errors.confirmPassword}</Form.Control.Feedback>
+                        </Form.Group>
+                      </Col>
+                    </Row>
 
-              <div className="text-center mt-3 small">
-                Already registered?{' '}
-                <Link to="/new-admin-login" className="login-link">Login</Link>
-              </div>
-            </Card>
-          </Container>
-        </div>
+                    <Button className="w-100 submit-btn" type="submit" disabled={isSubmitting}>
+                      {isSubmitting ? "Registering..." : "REGISTER ADMIN"}
+                    </Button>
+                  </Form>
+                );
+              }}
+            </Formik>
+
+            <div className="text-center mt-3 small">
+              Already registered?{' '}
+              <Link to="/new-admin-login" className="login-link">Login</Link>
+            </div>
+          </Card>
+        </Container>
       </div>
-    </>
+    </div>
   );
 };
