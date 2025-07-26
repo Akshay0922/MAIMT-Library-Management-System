@@ -3,7 +3,7 @@ import maimtLogo from '../../assets/maimtLogo.png';
 import './header.css';
 
 import { FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
-import {FaInstagram, FaFacebookF, FaLinkedinIn} from 'react-icons/fa';
+import { FaInstagram, FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
 
 export const Header = () => {
   return (
@@ -12,13 +12,13 @@ export const Header = () => {
       <div className="bookmark-ribbon">
         <span className="bookmark-text">
           Follow Us :
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://instagram.com/maimt_official" target="_blank" rel="noopener noreferrer">
             <FaInstagram />
           </a>
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://facebook.com/maimtdetail" target="_blank" rel="noopener noreferrer">
             <FaFacebookF />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/school/maimtdetail" target="_blank" rel="noopener noreferrer">
             <FaLinkedinIn />
           </a>
         </span>
@@ -32,12 +32,16 @@ export const Header = () => {
       <div className="contact-info">
 
         <div className="info-item">
-          <FaPhoneAlt className="icon" />
-          <span>9355455140</span>
+          <a href="tel:8222948280">
+            <FaPhoneAlt className="icon" />
+          </a>
+          <span>8222948280</span>
         </div>
 
         <div className="info-item">
-          <FaEnvelope className="icon" />
+          <a href="mailto:director@maimt.com">
+            <FaEnvelope className="icon" />
+          </a>
           <span>director@maimt.com</span>
         </div>
 
