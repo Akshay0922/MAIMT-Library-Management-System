@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
-
 import BooksTree from '../../assets/booksTree.png';
 import Ball from "../../assets/ball.png";
 
@@ -36,41 +35,42 @@ export const Home = () => {
 
   return (
     <>
-    <Navbar />
-    <div className="home-wrapper">
-      <img className="home-ball" src={Ball} alt="Ball" />
+      <Navbar />
+      <div className="home-wrapper">
+        <img className="home-ball" src={Ball} alt="Ball" />
 
-      <div className="home-top-part">
-        <img ref={imageRef} className="home-image" src={BooksTree} alt='Home Image' />
-        <section ref={heroRef} className="home-hero">
-          <h1>Welcome to</h1>
-          <h2>MAIMT Library</h2>
-          <p>Your academic resources, just one click away.</p>
-          <div className="hero-buttons">
-            <Link to="/books">Search Books</Link>
+        <div className="home-top-part">
+          <section ref={heroRef} className="home-hero">
+            <h1>Welcome to</h1>
+            <h2>MAIMT Library</h2>
+            <p>Explore a world of knowledge at your fingertips.</p>
+            <div className="hero-buttons">
+              <Link to="/books">Search Books</Link>
+            </div>
+          </section>
+
+          <img ref={imageRef} className="home-image" src={BooksTree} alt='Home Image' />
+        </div>
+
+        <section className="home-departments">
+          <h3>Our Departments</h3>
+          <div className="home-dept-grid">
+            {departments.map((dept, index) => (
+              <div className="dept-card-wrapper" key={index}>
+                <Link to={dept.to} className="dept-card">
+                  <div className="dept-card-image-wrapper">
+                    <div className="dept-card-image-inner">
+                      <img src={dept.icon} alt={dept.short} />
+                    </div>
+                  </div>
+                  <span>{dept.short}</span>
+                  <div className="full-form">{dept.full}</div>
+                </Link>
+              </div>
+            ))}
           </div>
         </section>
       </div>
-
-      <section className="home-departments">
-        <h3>Our Departments</h3>
-        <div className="home-dept-grid">
-          {departments.map((dept, index) => (
-            <div className="dept-card-wrapper" key={index}>
-              <Link to={dept.to} className="dept-card">
-                <div className="dept-card-image-wrapper">
-                  <div className="dept-card-image-inner">
-                    <img src={dept.icon} alt={dept.short} />
-                  </div>
-                </div>
-                <span>{dept.short}</span>
-                <div className="full-form">{dept.full}</div>
-              </Link>
-            </div>
-          ))}
-        </div>
-      </section>
-    </div>
     </>
   );
 };

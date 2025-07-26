@@ -1,13 +1,15 @@
 import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 
-import './navbar.css';
 import ProfileIcon from '../../assets/adminAvatar.jpg';
+
+import './navbar.css';
 
 export const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
   const dropdownRef = useRef();
   const barRef = useRef();
 
@@ -38,7 +40,6 @@ export const Navbar = () => {
     if (activeLink && bar) {
       const offsetLeft = activeLink.offsetLeft;
       const width = activeLink.offsetWidth;
-
       bar.style.transform = `translateX(${offsetLeft}px)`;
       bar.style.width = `${width}px`;
     }
@@ -55,23 +56,38 @@ export const Navbar = () => {
   return (
     <div className="main-navbar">
       <div className="main-navbar-container">
-        <div className="main-navbar-nav">
-          <div className="nav-highlight-bar" ref={barRef}></div>
+        
 
-          <NavLink to="/" className="nav-link">HOME</NavLink>
-          <NavLink to="/about" className="nav-link">ABOUT</NavLink>
-          <NavLink to="/rules" className="nav-link">RULE & REGULATION</NavLink>
-          <NavLink to="/books" className="nav-link">BOOKS</NavLink>
-          <NavLink to="/contact-us" className="nav-link">CONTACT US</NavLink>
+        <div className={`main-navbar-nav ${isNavOpen ? 'open' : ''}`}>
+          <div className="nav-highlight-bar" ref={barRef}></div>
+          <NavLink to="/" className="nav-link" onClick={() => setIsNavOpen(false)}>HOME</NavLink>
+          <NavLink to="/about" className="nav-link" onClick={() => setIsNavOpen(false)}>ABOUT</NavLink>
+          <NavLink to="/rules" className="nav-link" onClick={() => setIsNavOpen(false)}>RULE & REGULATION</NavLink>
+          <NavLink to="/books" className="nav-link" onClick={() => setIsNavOpen(false)}>BOOKS</NavLink>
+          <NavLink to="/contact-us" className="nav-link" onClick={() => setIsNavOpen(false)}>CONTACT US</NavLink>
+        </div>
+
+        <div className="main-navbar-header">
+          <button
+            className={`hamburger-btn ${isNavOpen ? 'open' : ''}`}
+            onClick={() => setIsNavOpen(!isNavOpen)}
+          >
+            <div className="bar"></div>
+            <div className="bar"></div>
+            <div className="bar"></div>
+          </button>
         </div>
 
         <div className="main-navbar-profile" ref={dropdownRef}>
-          <img
-            src={ProfileIcon}
-            alt="Profile"
-            className="main-navbar-profile-img"
-            onClick={() => setShowDropdown(!showDropdown)}
-          />
+
+          <div className="main-navbar-profile">
+            <img
+              src={ProfileIcon}
+              alt="Profile"
+              className="main-navbar-profile-img"
+              onClick={() => setShowDropdown(!showDropdown)}
+            />
+          </div>
 
           {showDropdown && (
             <div className="main-navbar-dropdown-menu">

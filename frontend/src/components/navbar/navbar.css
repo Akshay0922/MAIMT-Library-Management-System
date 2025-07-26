@@ -136,3 +136,145 @@
 .main-navbar-login-btn:active {
   transform: scale(0.93);
 }
+
+
+
+
+
+
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 6px;
+}
+
+.hamburger-btn .bar {
+  width: 24px;
+  height: 2px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.hamburger-btn.open .bar {
+  background-color: #FFD60A;
+}
+
+
+
+@media (max-width: 768px) {
+  .main-navbar {
+    padding: 0 1rem;
+  }
+
+  .main-navbar-container {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 10px 0;
+  }
+
+  .main-navbar-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .main-navbar-nav {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 0;
+    margin-top: 10px;
+  }
+
+  .main-navbar-nav.open {
+    display: flex;
+  }
+
+  .main-navbar .nav-link {
+    width: 100%;
+    padding: 10px 12px;
+    text-align: center;
+    font-size: 15px;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .main-navbar .nav-link.active {
+    background-color: #FFD60A;
+    color: #03045E !important;
+  }
+
+  .nav-highlight-bar {
+    display: none;
+  }
+
+  .main-navbar-profile {
+    align-self: flex-end;
+  }
+
+  .main-navbar-profile-img {
+    height: 28px;
+    width: 28px;
+  }
+
+  .main-navbar-dropdown-menu {
+    right: 10px;
+    top: 31px;
+    min-width: 180px;
+    padding: 18px 12px;
+  }
+
+  .main-navbar-dropdown-header {
+    font-size: 14px;
+    padding: 6px 8px;
+  }
+
+  .main-navbar-login-btn {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+
+  .main-navbar-nav.open ~ .main-navbar-profile {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-navbar-container {
+    padding: 6px 0;
+  }
+
+  .main-navbar .nav-link {
+    font-size: 14px;
+  }
+
+  .main-navbar-profile-img {
+    height: 26px;
+    width: 26px;
+  }
+
+  .main-navbar-dropdown-menu {
+    min-width: 160px;
+    padding: 14px 10px;
+  }
+
+  .main-navbar-dropdown-header {
+    font-size: 13px;
+  }
+
+  .main-navbar-login-btn {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+}

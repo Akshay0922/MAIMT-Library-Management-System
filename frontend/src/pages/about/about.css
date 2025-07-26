@@ -60,10 +60,10 @@
 .visit-btn {
   display: inline-block;
   margin-top: 14px;
-  padding: 9px 22px;
+  padding: 6px 22px;
   background-color: #03045e;
   color: #fff;
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
   border-radius: 50px;
   transition: background 0.3s ease, transform 0.6s ease;
@@ -86,4 +86,91 @@
 .library-desc {
   margin-top: 15px;
   color: #444;
+}
+
+
+
+
+
+
+
+
+/* Tablet View: screens up to 768px wide */
+@media (max-width: 768px) {
+  .about-main-wrapper {
+    padding: 40px 30px;
+  }
+
+  .maimt-layout {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .maimt-left,
+  .maimt-right {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .maimt-right {
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .maimt-img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .visit-btn {
+    font-size: 0.95rem;
+    padding: 7px 20px;
+  }
+
+  .library-content {
+    font-size: 0.95rem;
+  }
+}
+
+
+/* Mobile View: screens up to 480px wide */
+@media (max-width: 480px) {
+  .about-main-wrapper {
+    padding: 30px 20px;
+  }
+
+  .section-title {
+    font-size: 1.7rem;
+    border-bottom-width: 3px;
+  }
+
+  .maimt-left {
+    font-size: 0.95rem;
+  }
+
+  .maimt-left p,
+  .library-content p {
+    margin-bottom: 10px;
+  }
+
+  .visit-btn {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .library-content {
+    font-size: 0.9rem;
+  }
+
+  .library-desc {
+    font-size: 0.92rem;
+  }
 }

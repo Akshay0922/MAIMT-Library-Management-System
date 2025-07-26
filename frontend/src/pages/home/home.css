@@ -15,6 +15,7 @@
 
 .home-image {
   position: absolute;
+  top: 0;
   right: 60px;
   height: 444px;
   width: 444px;
@@ -96,7 +97,7 @@
   padding: 9px 31px;
   border-radius: 50px;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   transition: transform 0.6s ease, background 0.3s;
 }
 
@@ -184,4 +185,117 @@
   height: 100%;
   object-fit: contain;
   backface-visibility: hidden;
+}
+
+
+
+@media (max-width: 768px) {
+  .home-top-part {
+    height: auto;
+  }
+
+  .home-image {
+    position: static;
+    width: 333px;
+    height: 333px;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .home-hero {
+    width: 90%;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .home-hero h1 {
+    font-size: 36px;
+  }
+
+  .home-hero h2 {
+    font-size: 50px;
+  }
+
+  .home-hero p {
+    font-size: 17px;
+  }
+
+  .home-ball {
+    display: none;
+  }
+
+  .home-departments {
+    height: auto;
+    padding: 40px 20px;
+  }
+
+  .home-dept-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+  }
+
+  .dept-card-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .dept-card {
+    width: 90%;
+    max-width: 300px;
+    height: auto;
+    padding: 20px 15px;
+  }
+
+  .dept-card span {
+    font-size: 1.4rem;
+  }
+
+  .full-form {
+    font-size: 1rem;
+  }
+}
+
+
+
+@media (max-width: 480px) {
+  .home-hero h1 {
+    font-size: 28px;
+  }
+
+  .home-hero h2 {
+    font-size: 36px;
+  }
+
+  .home-hero p {
+    font-size: 15px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hero-buttons a {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .dept-card span {
+    font-size: 1.2rem;
+  }
+
+  .full-form {
+    font-size: 0.9rem;
+  }
+
+  .dept-card {
+    width: 95%;
+    padding: 18px 12px;
+  }
 }

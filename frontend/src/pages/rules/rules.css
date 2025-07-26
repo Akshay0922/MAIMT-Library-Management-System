@@ -69,3 +69,73 @@
   font-weight: 500;
   line-height: 1.5;
 }
+
+
+
+
+
+
+
+
+
+/* Tablet View (up to 768px) */
+@media (max-width: 768px) {
+  .rules-page {
+    padding: 40px 30px;
+  }
+
+  .rules-title {
+    font-size: 2.2rem;
+  }
+
+  .rules-subtitle {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+
+  .rule-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 18px;
+  }
+
+  .rule-icon {
+    font-size: 1.6rem;
+  }
+
+  .rule-text {
+    font-size: 1rem;
+  }
+}
+
+
+/* Mobile View (up to 480px) */
+@media (max-width: 480px) {
+  .rules-page {
+    padding: 30px 20px;
+  }
+
+  .rules-title {
+    font-size: 1.8rem;
+  }
+
+  .rules-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .rule-item {
+    padding: 14px 16px;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .rule-icon {
+    font-size: 1.5rem;
+  }
+
+  .rule-text {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+}

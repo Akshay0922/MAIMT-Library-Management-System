@@ -8,11 +8,6 @@ import {Header} from './components/header/Header.jsx';
 import {Footer} from './components/footer/Footer.jsx';
 import {ScrollToTop} from './components/scrollToTop/ScrollToTop.jsx';
 
-import { ForgotPassword } from './components/forgotPassword/ForgotPassword.jsx';
-import { OtpVerify } from './components/otpVerify/OtpVerify.jsx';
-import { ResetPassword } from './components/resetPassword/ResetPassword.jsx';
-import { ChangePassword } from './components/changePassword/ChangePassword.jsx';
-
 
 // OPAC- Online Public Access Catalog
 
@@ -28,6 +23,11 @@ import { ContactUs } from './pages/contactUs/ContactUs.jsx';
 import { StudentSignUp } from './pages/studentDashboard/studentSignup/StudentSignup.jsx';
 import { StudentLogin } from './pages/studentDashboard/studentLogin/StudentLogin.jsx';
 import { AdminLogin } from './pages/adminDashboard/adminLogin/AdminLogin.jsx';
+
+import { ForgotPassword } from './pages/forgotPassword/ForgotPassword.jsx';
+import { OtpVerify } from './pages/otpVerify/OtpVerify.jsx';
+import { ResetPassword } from './pages/resetPassword/ResetPassword.jsx';
+import { ChangePassword } from './pages/changePassword/ChangePassword.jsx';
 
 
 // ADMIN
