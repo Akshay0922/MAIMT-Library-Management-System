@@ -4,7 +4,11 @@ import * as yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Container, Form, Button, Card, Spinner } from "react-bootstrap";
+import { Container, Form, Button, Card, Spinner, Row, Col } from "react-bootstrap";
+
+import ForgotPasswordImage from '../../assets/forgotPasswordImage.png';
+
+import "./forgotPassword.css";
 
 export const ForgotPassword = () => {
   const navigate = useNavigate();
@@ -21,14 +25,7 @@ export const ForgotPassword = () => {
         .required("Email is required"),
     }),
     onSubmit: async (values) => {
-      const toastId = toast.loading("Sending OTP...", {
-        style: {
-          backgroundColor: "#061561",
-          color: "white",
-          fontWeight: "500",
-        },
-      });
-
+      const toastId = toast.loading("Sending OTP...");
       setLoading(true);
       try {
         const response = await axios.post(
@@ -43,7 +40,6 @@ export const ForgotPassword = () => {
           type: "success",
         });
         localStorage.setItem("resetPassword", values.email);
-        // Navigate to OTP verification page with email passed via state
         setTimeout(() => {
           navigate("/verify-otp");
         }, 3000);
@@ -62,53 +58,58 @@ export const ForgotPassword = () => {
   });
 
   return (
-    <div className="login-screen">
-      <Container>
-        <Card
-          className="p-4 shadow-lg login-container mt-5"
-          style={{ maxWidth: "500px", margin: "0 auto" }}
-        >
-          <h4 className="text-center mb-4" style={{ color: "#5f6fff" }}>
-            Forgot Password
-          </h4>
-          <Form onSubmit={formik.handleSubmit}>
-            <Form.Group controlId="email">
-              <Form.Label>Registered Email</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                placeholder="Enter your email"
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                isInvalid={formik.touched.email && formik.errors.email}
+    <div className="forgot-password-screen">
+      <Container className="my-5">
+        <Card className="p-4 shadow-lg forgot-password-container">
+          <Row className="align-items-center">
+            <Col md={6} className="mb-4 mb-md-0 text-center">
+              <img
+                src={ForgotPasswordImage}
+                alt="Forgot Password Illustration"
+                className="forgot-password-img"
               />
-              <Form.Control.Feedback type="invalid">
-                {formik.errors.email}
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            <Button
-              type="submit"
-              className="w-100 mt-4 login-btn"
-              disabled={loading}
-              style={{ backgroundColor: "#5f6fff" }}
-            >
-              {loading ? (
-                <>
-                  <Spinner
-                    animation="border"
-                    size="sm"
-                    role="status"
-                    className="me-2"
+            </Col>
+            <Col md={6}>
+              <h4 className="text-center mb-4">Forgot Password</h4>
+              <Form onSubmit={formik.handleSubmit}>
+                <Form.Group controlId="email">
+                  <Form.Label>Registered Email</Form.Label>
+                  <Form.Control
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    isInvalid={formik.touched.email && formik.errors.email}
                   />
-                  Sending...
-                </>
-              ) : (
-                "Send OTP"
-              )}
-            </Button>
-          </Form>
+                  <Form.Control.Feedback type="invalid">
+                    {formik.errors.email}
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+                <Button
+                  type="submit"
+                  className="w-100 mt-4 login-btn"
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <>
+                      <Spinner
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        className="me-2"
+                      />
+                      Sending...
+                    </>
+                  ) : (
+                    "Send OTP"
+                  )}
+                </Button>
+              </Form>
+            </Col>
+          </Row>
         </Card>
       </Container>
     </div>
