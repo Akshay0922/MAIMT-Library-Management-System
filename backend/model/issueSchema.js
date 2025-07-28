@@ -21,9 +21,10 @@ const issueSchema = new mongoose.Schema({
   returnDate: Date,
   status: {
     type: String,
-    enum: ["issued", "returned"],
+    enum: ["issued", "returned","overdue"],
     default: "issued"
-  }
+  },
+  fine:{type:Number,default:0}
 });
 
 module.exports=mongoose.model("Issue",issueSchema)
