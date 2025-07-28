@@ -9,13 +9,13 @@ exports.addBooks = async (req, res) => {
     //  console.log("📦 Request Body:", req.body);
     const {
       entryDate, 
-      bookName,// <-- ADD THIS
+      bookName,
       title, author, edition, volume,
       publisher, year, pages, isbn,
       department, course, cost,
       rackNumber, shelfNo, place,
       vendor, billNo, billDate,
-      noOfBooks // <-- USE this instead of "copies"
+      noOfBooks 
     } = req.body;
 
     // ✅ Step 1: Save book
