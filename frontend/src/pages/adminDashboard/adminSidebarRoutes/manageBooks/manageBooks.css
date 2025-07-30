@@ -9,15 +9,17 @@
   margin: 20px;
 }
 
-.manage-books-buttons-section{
-    height: 80px;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 50px;
-    align-items: center;
-    justify-content: center;
+.manage-books-buttons-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  height: 80px;
+  width: 60%;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
 }
+
 
 .add-book-btn {
   background-color: #03045e;

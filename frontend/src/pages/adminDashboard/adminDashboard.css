@@ -5,18 +5,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.admin-main-content {
-  flex: 1;
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: margin-left 0.3s ease;
-  border-radius: 22px;
-  margin: 20px;
-}
-
+.admin-main-content,
 .admin-dashboard-main-content {
   flex: 1;
   padding: 30px;
@@ -29,12 +18,12 @@
   margin: 20px;
 }
 
-
 .card-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   justify-content: center;
+  margin-top: 20px;
   margin-bottom: 50px;
 }
 
@@ -49,7 +38,7 @@
   width: 180px;
   text-align: center;
   color: #03045e;
-  transition: transform 0.3s ease,background 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .dashboard-card:hover {
@@ -68,7 +57,6 @@
   font-size: 26px;
   font-weight: bold;
 }
-
 
 .chart-container {
   display: flex;
@@ -113,8 +101,60 @@
   font-weight: 600;
 }
 
+.chart-filter {
+  margin-bottom: 20px;
+  padding: 8px 14px;
+  font-weight: 600;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: white;
+  color: #03045e;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+/* Dynamic Stats Section */
+.dynamic-stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 40px;
+}
 
+.dynamic-stat-card {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 0 18px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+  padding: 16px 20px;
+  width: 180px;
+  text-align: center;
+  color: #03045e;
+  transition: transform 0.3s ease;
+}
+
+.dynamic-stat-card:hover {
+  transform: translateY(-5px);
+  background-color: #03045e;
+  color: white;
+}
+
+.dynamic-stat-card h5 {
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.dynamic-stat-card p {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Welcome Modal */
 .welcome-overlay {
   position: fixed;
   inset: 0;
@@ -174,7 +214,6 @@
   from {
     opacity: 0;
   }
-
   to {
     opacity: 1;
   }
@@ -185,7 +224,6 @@
     transform: scale(0.9);
     opacity: 0;
   }
-
   to {
     transform: scale(1);
     opacity: 1;
