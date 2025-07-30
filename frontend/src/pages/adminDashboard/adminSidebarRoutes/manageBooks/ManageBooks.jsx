@@ -27,9 +27,23 @@ export const ManageBooks = () => {
 
             <button
               className="view-book-btn"
-              // onClick={() => navigate('/add-new-book')}
+              onClick={() => navigate('/books')}
             >
               View All Books
+            </button>
+
+            <button
+              className="issue-book-btn"
+              onClick={() => navigate('/issue-book')}
+            >
+              Issue Book
+            </button>
+
+            <button
+              className="return-book-btn"
+              onClick={() => navigate('/return-book')}
+            >
+              Return Book
             </button>
 
           </div>

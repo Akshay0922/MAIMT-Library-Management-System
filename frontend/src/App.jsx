@@ -39,6 +39,8 @@ import { NewAdminLogin } from './pages/adminDashboard/adminSidebarRoutes/newAdmi
 import { ManageUsers } from './pages/adminDashboard/adminSidebarRoutes/manageUsers/ManageUsers.jsx';
 import { ManageBooks } from './pages/adminDashboard/adminSidebarRoutes/manageBooks/ManageBooks.jsx';
 import { AddNewBook } from './pages/adminDashboard/adminSidebarRoutes/manageBooks/addNewBook/AddNewBook.jsx';
+import { IssueBook } from './pages/adminDashboard/adminSidebarRoutes/manageBooks/issueBook/IssueBook.jsx';
+import { ReturnBook } from './pages/adminDashboard/adminSidebarRoutes/manageBooks/returnBook/ReturnBook.jsx';
 import { Reports } from './pages/adminDashboard/adminSidebarRoutes/reports/Reports.jsx';
 import { AdminLogout } from './pages/adminDashboard/adminSidebarRoutes/adminLogout/AdminLogout.jsx';
 
@@ -109,6 +111,8 @@ function App() {
           <Route path="/manage-users" element={<ManageUsers />} />
           <Route path="/manage-books" element={<ManageBooks />} />
           <Route path="/add-new-book" element={<AddNewBook />} />
+          <Route path="/issue-book" element={<IssueBook />} />
+          <Route path="/return-book" element={<ReturnBook />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/admin-logout" element={<AdminLogout />} />
 

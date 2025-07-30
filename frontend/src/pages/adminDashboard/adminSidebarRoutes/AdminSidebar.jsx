@@ -53,7 +53,7 @@ export const AdminSidebar = () => {
                             (item.path === '/new-admin' &&
                                 location.pathname.match(/^\/(new-admin|new-admin-login)/)) ||
                                 (item.path === '/manage-books' &&
-                                    location.pathname.match(/^\/(manage-books|add-new-book)/)) ||
+                                    location.pathname.match(/^\/(manage-books|add-new-book|issue-book)/)) ||
                                 location.pathname === item.path
                                 ? 'active'
                                 : ''

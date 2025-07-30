@@ -53,3 +53,38 @@
   background-color: #fca311;
   transform: translateY(-6px);
 }
+
+
+.issue-book-btn {
+  background-color: #03045e;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 0 11px;
+  padding: 11px 22px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.issue-book-btn:hover {
+  background-color: #fca311;
+  transform: translateY(-6px);
+}
+
+.return-book-btn {
+  background-color: #03045e;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 0 11px;
+  padding: 11px 22px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.return-book-btn:hover {
+  background-color: #fca311;
+  transform: translateY(-6px);
+}
