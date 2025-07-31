@@ -1,5 +1,5 @@
 const Issued = require("../model/issueSchema");
-const BookCopy = require("../model/bookCopy");
+const BookCopie = require("../model/bookCopy"); 
 const User = require("../model/User");
 
 exports.returnBook = async (req, res) => {
@@ -11,7 +11,7 @@ exports.returnBook = async (req, res) => {
     }
 
     // Find the BookCopy
-    const bookCopy = await BookCopy.findOne({ accessionNumber });
+    const bookCopy = await BookCopie.findOne({ accessionNumber });
     if (!bookCopy) {
       return res.status(404).json({ message: "Book copy not found." });
     }
@@ -33,21 +33,17 @@ exports.returnBook = async (req, res) => {
       return res.status(404).json({ message: "No active issued record found for this book and student." });
     }
 
-    // Set return date and fine
     const returnDate = new Date();
     const dueDate = new Date(issuedRecord.dueDate);
-    const lateDays = Math.ceil((returnDate - dueDate) / (1000 * 60 * 60 * 24)); // in days
-
+    const lateDays = Math.ceil((returnDate - dueDate) / (1000 * 60 * 60 * 24));
     const finePerDay = 5;
     const fine = lateDays > 0 ? lateDays * finePerDay : 0;
 
-    // Update issued record
     issuedRecord.returnDate = returnDate;
     issuedRecord.status = "returned";
     issuedRecord.fine = fine;
     await issuedRecord.save();
 
-    // Update bookCopy status
     bookCopy.status = "available";
     await bookCopy.save();
 
@@ -61,6 +57,6 @@ exports.returnBook = async (req, res) => {
     });
 
   } catch (error) {
-    res.status(500).json({ message: "Server error", error: error.message });
-  }
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
 };
