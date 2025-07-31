@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { Form, Button, Container, Card } from 'react-bootstrap';
+import { Form, Button, Container, Card, Row, Col } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+
+import loginPageImage from '../../../assets/loginPageImage.png';
 import './studentLogin.css';
 
 export const StudentLogin = () => {
@@ -48,79 +50,89 @@ export const StudentLogin = () => {
   });
 
   return (
-    <div className="login-screen">
-      <Container>
-        <Card className="p-4 login-container">
-          <h5 className="text-center fw-bold mb-4 login-heading">LOG IN</h5>
+    <>
+      <div className="login-screen">
+        <Container fluid>
+          <Row className="justify-content-center align-items-center g-4">
+            <Col md={6} className="d-none d-md-flex justify-content-center">
+              <img className="login-image" src={loginPageImage} alt="Login" />
+            </Col>
 
-          <Form noValidate className="mt-3" onSubmit={formik.handleSubmit}>
-            <Form.Group className="mb-3">
-              <Form.Label>Student Id</Form.Label>
-              <Form.Control
-                type="text"
-                name="id"
-                placeholder="Enter your id"
-                value={formik.values.id}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                isInvalid={formik.touched.id && !!formik.errors.id}
-              />
-              <Form.Control.Feedback type="invalid">
-                {formik.errors.id}
-              </Form.Control.Feedback>
-            </Form.Group>
+            <Col xs={12} md={6}>
+              <Card className="p-4 login-container">
+                <h5 className="text-center fw-bold mb-4 login-heading">LOG IN</h5>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                placeholder="Enter email address"
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                isInvalid={formik.touched.email && !!formik.errors.email}
-              />
-              <Form.Control.Feedback type="invalid">
-                {formik.errors.email}
-              </Form.Control.Feedback>
-            </Form.Group>
+                <Form noValidate className="mt-3" onSubmit={formik.handleSubmit}>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Student Id</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="id"
+                      placeholder="Enter your id"
+                      value={formik.values.id}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      isInvalid={formik.touched.id && !!formik.errors.id}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {formik.errors.id}
+                    </Form.Control.Feedback>
+                  </Form.Group>
 
-            <Form.Group className="mb-3 position-relative">
-              <div className="d-flex justify-content-between align-items-center">
-                <Form.Label>Password</Form.Label>
-                <Link to="/forgot-password" className="login-forgot-password">Forgot Password?</Link>
-              </div>
-              <Form.Control
-                type={showPassword ? 'text' : 'password'}
-                name="password"
-                placeholder="Enter your password"
-                value={formik.values.password}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                isInvalid={formik.touched.password && !!formik.errors.password}
-              />
-              {formik.values.password && (
-                <span
-                  className="password-toggle-icon"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? <FaEyeSlash /> : <FaEye />}
-                </span>
-              )}
-              <Form.Control.Feedback type="invalid">
-                {formik.errors.password}
-              </Form.Control.Feedback>
-            </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                      type="email"
+                      name="email"
+                      placeholder="Enter email address"
+                      value={formik.values.email}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      isInvalid={formik.touched.email && !!formik.errors.email}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {formik.errors.email}
+                    </Form.Control.Feedback>
+                  </Form.Group>
 
-            <Button type="submit" className="w-100 login-btn mt-3">LOG IN</Button>
-          </Form>
+                  <Form.Group className="mb-3 position-relative">
+                    <div className="d-flex justify-content-between align-items-center">
+                      <Form.Label>Password</Form.Label>
+                      <Link to="/forgot-password" className="login-forgot-password">Forgot Password?</Link>
+                    </div>
+                    <Form.Control
+                      type={showPassword ? 'text' : 'password'}
+                      name="password"
+                      placeholder="Enter your password"
+                      value={formik.values.password}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      isInvalid={formik.touched.password && !!formik.errors.password}
+                    />
+                    {formik.values.password && (
+                      <span
+                        className="password-toggle-icon"
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      </span>
+                    )}
+                    <Form.Control.Feedback type="invalid">
+                      {formik.errors.password}
+                    </Form.Control.Feedback>
+                  </Form.Group>
 
-          <div className="text-center mt-3 small">
-            Don't have an account? <Link to="/student-signup" className="signup-link">Sign up</Link>
-          </div>
-        </Card>
-      </Container>
-    </div>
+                  <Button type="submit" className="w-100 login-btn mt-3">LOG IN</Button>
+                </Form>
+
+                <div className="text-center mt-3 small">
+                  Don't have an account? <Link to="/student-signup" className="signup-link">Sign up</Link>
+                </div>
+              </Card>
+            </Col>
+          </Row>
+        </Container>
+      </div >
+    </>
   );
 };
