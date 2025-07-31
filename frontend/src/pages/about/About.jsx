@@ -2,12 +2,31 @@ import MaimtImage from "../../assets/maimtImage.png";
 
 import { Navbar } from '../../components/navbar/Navbar';
 
+import AboutUsImage from '../../assets/aboutUsImage.png';
+import Ball from "../../assets/ball.png";
+
 import "./about.css";
 
 export const About = () => {
   return (
     <>
       <Navbar />
+
+      <div className="about-page-top-part">
+        <img className="home-ball" src={Ball} alt="Ball" />
+        <div className="top-content">
+          <div className="text-block">
+            <h1>About</h1>
+            <h2>MAIMT Library</h2>
+            <p>Empowering knowledge seekers with rich resources, a peaceful environment, and modern facilities.</p>
+          </div>
+
+          <div className="image-block">
+            <img src={AboutUsImage} alt='About Us Image' className='about-us-image' />
+          </div>
+        </div>
+      </div>
+
       <div className="about-main-wrapper">
 
         <section className="maimt-section">

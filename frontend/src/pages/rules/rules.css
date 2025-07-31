@@ -5,6 +5,78 @@
   background: linear-gradient(90deg, #f0f4ff, #fffaf0, #eafff1);
 }
 
+
+
+.rules-page-top-part {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 73vh;
+  background: #f0f4ff;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.top-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.text-block {
+  flex: 1;
+  max-width: 600px;
+  margin-left: 100px;
+}
+
+.text-block h1 {
+  font-size: 70px;
+  color: #03045e;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-family: 'Cinzel', serif;
+}
+
+.text-block h2 {
+  font-size: 40px;
+  color: #fca311;
+  margin-bottom: 12px;
+  font-family: 'Cinzel', serif;
+}
+
+.text-block p {
+  font-size: 18px;
+  color: #333;
+}
+
+.image-block {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rules-page-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.home-ball {
+  position: absolute;
+  top: 10%;
+  width: 100px;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.2));
+}
+
+
 .rules-title {
   font-size: 2.8rem;
   font-weight: 800;
@@ -32,7 +104,7 @@
 .rule-item {
   display: flex;
   align-items: center;
-  max-width: 700px;
+  max-width: 900px;
   width: 100%;
   gap: 50px;
   background: rgba(255, 255, 255, 0.25);
@@ -50,7 +122,7 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
   background-color: #03045e;
   .rule-icon{
-    color: #fca311;
+    color: #f0f4ff;
   }
   .rule-text{
     color: white;

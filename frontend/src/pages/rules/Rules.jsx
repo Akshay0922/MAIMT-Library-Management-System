@@ -2,6 +2,9 @@ import { Navbar } from '../../components/navbar/Navbar';
 
 import { FaBookDead, FaBan, FaBellSlash, FaMobileAlt, FaUserClock, FaIdBadge, FaChair, FaClock } from "react-icons/fa";
 
+import RulesPageImage from '../../assets/rulesPageImage.png';
+import Ball from "../../assets/ball.png";
+
 import "./rules.css";
 
 export const Rules = () => {
@@ -43,8 +46,23 @@ export const Rules = () => {
   return (
     <>
       <Navbar />
+      <div className="rules-page-top-part">
+        <img className="home-ball" src={Ball} alt="Ball" />
+        <div className="top-content">
+          <div className="text-block">
+            <h1>Know the</h1>
+            <h2>Library Rules & Regulations</h2>
+            <p>Ensure a smooth experience by following our library guidelines.</p>
+          </div>
+
+          <div className="image-block">
+            <img src={RulesPageImage} alt='rules image' className='rules-page-image' />
+          </div>
+        </div>
+      </div>
+
       <div className="rules-page">
-        <h1 className="rules-title">📜 Library Rules & Regulations</h1>
+        <h1 className="rules-title">Library Rules & Regulations</h1>
         <p className="rules-subtitle">
           Please follow these guidelines to ensure a peaceful and productive library environment.
         </p>

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
-import BooksTree from '../../assets/booksTree.png';
+import HomePageImage from '../../assets/homePageImage.png';
 import Ball from "../../assets/ball.png";
 
 import mcaIcon from '../../assets/eContent/mca.png';
@@ -49,7 +49,7 @@ export const Home = () => {
             </div>
           </section>
 
-          <img ref={imageRef} className="home-image" src={BooksTree} alt='Home Image' />
+          <img ref={imageRef} className="home-image" src={HomePageImage} alt='Home Image' />
         </div>
 
         <section className="home-departments">
