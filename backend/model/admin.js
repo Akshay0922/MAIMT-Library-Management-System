@@ -25,6 +25,11 @@ const adminSchema = new mongoose.Schema({
         required: true,
         
     },
+    lastLogin: {
+  type: Date,
+  default: null
+}
+,
     role: { type: String, default: "admin" }
 
 }, { timestamps: true });

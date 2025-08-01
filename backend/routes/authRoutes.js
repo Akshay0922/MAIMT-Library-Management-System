@@ -15,8 +15,7 @@ router.post("/reset-password",authController.resetPassword);
 
 router.post('/change-password', authController.changePassword);
 
-
-
+router.get("/all-users",authController.getAllUsers);
 
 
 // router.get("/student-dashboard",verifyToken,authController.studentPage)

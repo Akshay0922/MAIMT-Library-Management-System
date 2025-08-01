@@ -34,6 +34,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: false 
   },
+  lastLogin: {
+  type: Date,
+  default: null
+},
+
 
   // semester:{
 //   type:String,
