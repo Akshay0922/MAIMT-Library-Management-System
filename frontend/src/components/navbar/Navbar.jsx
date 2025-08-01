@@ -64,7 +64,6 @@ export const Navbar = () => {
           <NavLink to="/about" className="nav-link" onClick={() => setIsNavOpen(false)}>ABOUT</NavLink>
           <NavLink to="/rules" className="nav-link" onClick={() => setIsNavOpen(false)}>RULE & REGULATION</NavLink>
           <NavLink to="/books" className="nav-link" onClick={() => setIsNavOpen(false)}>BOOKS</NavLink>
-          <NavLink to="/contact-us" className="nav-link" onClick={() => setIsNavOpen(false)}>CONTACT US</NavLink>
         </div>
 
         <div className="main-navbar-header">
