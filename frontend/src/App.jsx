@@ -15,7 +15,6 @@ import { Home } from './pages/home/Home.jsx';
 import { About } from './pages/about/About.jsx';
 import { Rules } from './pages/rules/Rules.jsx';
 import { Books } from './pages/books/Books.jsx';
-import { ContactUs } from './pages/contactUs/ContactUs.jsx';
 
 
 // ACCOUNTS
@@ -86,7 +85,6 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/rules" element={<Rules />} />
           <Route path="/books" element={<Books />} />
-          <Route path="/contact-us" element={<ContactUs />} />
 
 
 
