@@ -4,4 +4,4 @@ const vendorSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
   place: { type: String }
 });
-const Vendor = mongoose.model('Vendor', vendorSchema);
+module.exports = mongoose.model('Vendor', vendorSchema);
