@@ -19,7 +19,13 @@ const bookSchema = new mongoose.Schema({
   vendor: { type: mongoose.Schema.Types.ObjectId, ref: 'Vendor' },
   billNo: { type: String },
   billDate: { type: Date },
-  costOnBill: { type: Number }
+  costOnBill: { type: Number },
+  status: {
+  type: String,
+  enum: ['available', 'issued', 'lost', 'damaged'],
+  default: 'available'
+}
+
 }, { timestamps: true });
 
 const Book = mongoose.model('Book', bookSchema);
