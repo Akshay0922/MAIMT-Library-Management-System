@@ -338,122 +338,122 @@
 
 
 
-const Book = require("../model/bookSchema");
-const Course = require("../model/courseSchema");
-const Vendor = require("../model/vendorSchema");
-const Author = require("../model/Author");
-const Department = require("../model/departmentSchema");
-const Publisher = require("../model/publisherSchema");
+// const Book = require("../model/bookSchema");
+// const Course = require("../model/courseSchema");
+// const Vendor = require("../model/vendorSchema");
+// const Author = require("../model/Author");
+// const Department = require("../model/departmentSchema");
+// const Publisher = require("../model/publisherSchema");
 
-// 🔧 Helper: Generic Reference Getter/Creator
-const getOrCreateReference = async (Model, input, returnDoc = false) => {
-  if (!input) return null;
+// // 🔧 Helper: Generic Reference Getter/Creator
+// const getOrCreateReference = async (Model, input, returnDoc = false) => {
+//   if (!input) return null;
 
-  if (typeof input === 'string' && input.match(/^[0-9a-fA-F]{24}$/)) {
-    const found = await Model.findById(input);
-    return returnDoc ? found : found?._id;
-  }
+//   if (typeof input === 'string' && input.match(/^[0-9a-fA-F]{24}$/)) {
+//     const found = await Model.findById(input);
+//     return returnDoc ? found : found?._id;
+//   }
 
-  let existing = await Model.findOne({ name: input });
-  if (existing) return returnDoc ? existing : existing._id;
+//   let existing = await Model.findOne({ name: input });
+//   if (existing) return returnDoc ? existing : existing._id;
 
-  const created = await Model.create({ name: input });
-  return returnDoc ? created : created._id;
-};
+//   const created = await Model.create({ name: input });
+//   return returnDoc ? created : created._id;
+// };
 
-// ✅ Add Book Controller
-exports.addBook = async (req, res) => {
-  try {
-    const {
-      entryDate,
-      bookName,
-      title,
-      author,
-      edition,
-      department,
-      course,
-      pages,
-      isbn,
-      noOfBooks,
-      rackNumber,
-      shelfNo,
-      publisher,
-      year,
-      place,
-      vendor,
-      billNo,
-      billDate,
-      cost
-    } = req.body;
+// // ✅ Add Book Controller
+// exports.addBook = async (req, res) => {
+//   try {
+//     const {
+//       entryDate,
+//       bookName,
+//       title,
+//       author,
+//       edition,
+//       department,
+//       course,
+//       pages,
+//       isbn,
+//       noOfBooks,
+//       rackNumber,
+//       shelfNo,
+//       publisher,
+//       year,
+//       place,
+//       vendor,
+//       billNo,
+//       billDate,
+//       cost
+//     } = req.body;
 
-    // 🔁 Resolve references
-    const authorId = await getOrCreateReference(Author, author);
-    const publisherId = await getOrCreateReference(Publisher, publisher);
-    const vendorId = await getOrCreateReference(Vendor, vendor);
-    const departmentId = await getOrCreateReference(Department, department);
+//     // 🔁 Resolve references
+//     const authorId = await getOrCreateReference(Author, author);
+//     const publisherId = await getOrCreateReference(Publisher, publisher);
+//     const vendorId = await getOrCreateReference(Vendor, vendor);
+//     const departmentId = await getOrCreateReference(Department, department);
 
-    const updatedCourseDoc = await Course.findOneAndUpdate(
-      { name: course },
-      { $inc: { lastAccessionNo: 1 } },
-      { new: true, upsert: true }
-    );
+//     const updatedCourseDoc = await Course.findOneAndUpdate(
+//       { name: course },
+//       { $inc: { lastAccessionNo: 1 } },
+//       { new: true, upsert: true }
+//     );
 
-    if (!updatedCourseDoc) {
-      return res.status(400).json({ message: "Invalid or missing course" });
-    }
+//     if (!updatedCourseDoc) {
+//       return res.status(400).json({ message: "Invalid or missing course" });
+//     }
 
-    const accessionNumber = `${updatedCourseDoc.lastAccessionNo}`;
+//     const accessionNumber = `${updatedCourseDoc.lastAccessionNo}`;
 
-    const newBook = await Book.create({
-      accessionNumber,
-      entryDate,
-      bookName,
-      title,
-      author: authorId,
-      edition,
-      department: departmentId,
-      course: updatedCourseDoc._id,
-      pages,
-      isbn,
-      noOfBooks,
-      rackNumber,
-      shelfNo,
-      publisher: publisherId,
-      year,
-      place,
-      vendor: vendorId,
-      billNo,
-      billDate,
-      cost
-    });
+//     const newBook = await Book.create({
+//       accessionNumber,
+//       entryDate,
+//       bookName,
+//       title,
+//       author: authorId,
+//       edition,
+//       department: departmentId,
+//       course: updatedCourseDoc._id,
+//       pages,
+//       isbn,
+//       noOfBooks,
+//       rackNumber,
+//       shelfNo,
+//       publisher: publisherId,
+//       year,
+//       place,
+//       vendor: vendorId,
+//       billNo,
+//       billDate,
+//       cost
+//     });
 
-    res.status(201).json({
-      message: "✅ Book added successfully!",
-      accessionNumber,
-      book: newBook
-    });
-  } catch (err) {
-    console.error("❌ Book add error:", err.message);
-    res.status(500).json({ message: "Error adding book", error: err.message });
-  }
-};
+//     res.status(201).json({
+//       message: "✅ Book added successfully!",
+//       accessionNumber,
+//       book: newBook
+//     });
+//   } catch (err) {
+//     console.error("❌ Book add error:", err.message);
+//     res.status(500).json({ message: "Error adding book", error: err.message });
+//   }
+// };
 
-// ✅ Suggestion Controller for Autocomplete Dropdown
-const searchByName = async (Model, req, res) => {
-  try {
-    const query = req.query.query || "";
-    const results = await Model.find({
-      name: { $regex: new RegExp("^" + query, "i") }
-    }).limit(10);
-    res.json(results);
-  } catch (err) {
-    res.status(500).json({ message: "Server Error" });
-  }
-};
+// // ✅ Suggestion Controller for Autocomplete Dropdown
+// const searchByName = async (Model, req, res) => {
+//   try {
+//     const query = req.query.query || "";
+//     const results = await Model.find({
+//       name: { $regex: new RegExp("^" + query, "i") }
+//     }).limit(10);
+//     res.json(results);
+//   } catch (err) {
+//     res.status(500).json({ message: "Server Error" });
+//   }
+// };
 
-// 🔎 Export All Suggestion Handlers
-exports.searchAuthors = (req, res) => searchByName(Author, req, res);
-exports.searchPublishers = (req, res) => searchByName(Publisher, req, res);
-exports.searchVendors = (req, res) => searchByName(Vendor, req, res);
-exports.searchCourses = (req, res) => searchByName(Course, req, res);
-exports.searchDepartments = (req, res) => searchByName(Department, req, res);
+// // 🔎 Export All Suggestion Handlers
+// exports.searchAuthors = (req, res) => searchByName(Author, req, res);
+// exports.searchPublishers = (req, res) => searchByName(Publisher, req, res);
+// exports.searchVendors = (req, res) => searchByName(Vendor, req, res);
+// exports.searchCourses = (req, res) => searchByName(Course, req, res);
+// exports.searchDepartments = (req, res) => searchByName(Department, req, res);
