@@ -341,7 +341,7 @@
 const Book = require("../model/bookSchema");
 const Course = require("../model/courseSchema");
 const Vendor = require("../model/vendorSchema");
-const Author = require("../model/authorSchema");
+const Author = require("../model/Author");
 const Department = require("../model/departmentSchema");
 const Publisher = require("../model/publisherSchema");
 
