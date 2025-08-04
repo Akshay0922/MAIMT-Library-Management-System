@@ -38,6 +38,6 @@ const bookVolumeSchema = new mongoose.Schema({
 });
 
 
-bookVolumeSchema.index({ title: 1, author: 1, edition: 1, publisher: 1, course: 1 }, { unique: true });
+bookVolumeSchema.index({ title: 1, author: 1, edition: 1, publisher: 1, course: 1 });
 
 module.exports = mongoose.model('BookVolume', bookVolumeSchema);

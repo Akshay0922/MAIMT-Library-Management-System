@@ -43,6 +43,7 @@ import { ReturnBook } from './pages/adminDashboard/adminSidebarRoutes/manageBook
 import { Reports } from './pages/adminDashboard/adminSidebarRoutes/reports/Reports.jsx';
 import { AdminLogout } from './pages/adminDashboard/adminSidebarRoutes/adminLogout/AdminLogout.jsx';
 
+import { VendorPage } from './pages/adminDashboard/adminSidebarRoutes/manageBooks/vendorForm/VendorPage.jsx';
 
 
 
@@ -70,6 +71,7 @@ import { NotFound } from './pages/notFound/NotFound.jsx';
 
 
 import './App.css';
+import { BookReviewPage } from './pages/adminDashboard/adminSidebarRoutes/manageBooks/reviewBook/BookReview.jsx';
 
 function App() {
   return (
@@ -113,7 +115,8 @@ function App() {
           <Route path="/return-book" element={<ReturnBook />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/admin-logout" element={<AdminLogout />} />
-
+          <Route path = "/vendor-detail" element={<VendorPage/>}></Route>
+          <Route path = "/review-books" element = {<BookReviewPage/>}></Route>
 
 
 

@@ -20,7 +20,7 @@ export const ManageBooks = () => {
           <div className="manage-books-buttons-section">
             <button
               className="add-book-btn"
-              onClick={() => navigate('/add-new-book')}
+              onClick={() => navigate('/vendor-detail')}
             >
               Add New Book
             </button>
