@@ -49,7 +49,7 @@ export const Rules = () => {
       <div className="rules-page-top-part">
         <img className="home-ball" src={Ball} alt="Ball" />
         <div className="top-content">
-          <div className="text-block">
+          <div className="rules-text-block">
             <h1>Know the</h1>
             <h2>Library Rules & Regulations</h2>
             <p>Ensure a smooth experience by following our library guidelines.</p>
@@ -62,10 +62,8 @@ export const Rules = () => {
       </div>
 
       <div className="rules-page">
-        <h1 className="rules-title">Library Rules & Regulations</h1>
-        <p className="rules-subtitle">
-          Please follow these guidelines to ensure a peaceful and productive library environment.
-        </p>
+        <h1 className="rules-title">Rules & Regulations</h1>
+        
 
         <div className="rules-list">
           {rules.map((rule, index) => (

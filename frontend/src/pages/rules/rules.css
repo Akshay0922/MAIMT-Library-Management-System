@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   height: 73vh;
-  background: #f0f4ff;
+  background: linear-gradient(135deg, #fce4ec, #e1f5fe);
   padding: 40px 20px;
   position: relative;
   overflow: hidden;
@@ -28,28 +28,28 @@
   gap: 20px;
 }
 
-.text-block {
+.rules-text-block {
   flex: 1;
   max-width: 600px;
   margin-left: 100px;
 }
 
-.text-block h1 {
-  font-size: 70px;
-  color: #03045e;
+.rules-text-block h1 {
+  font-size: 40px;
+  color: #fca311;
   margin-bottom: 8px;
+  font-family: 'Cinzel', serif;
+}
+
+.rules-text-block h2 {
+  font-size: 60px;
+  color: #03045e;
+  margin-bottom: 12px;
   font-weight: 600;
   font-family: 'Cinzel', serif;
 }
 
-.text-block h2 {
-  font-size: 40px;
-  color: #fca311;
-  margin-bottom: 12px;
-  font-family: 'Cinzel', serif;
-}
-
-.text-block p {
+.rules-text-block p {
   font-size: 18px;
   color: #333;
 }
@@ -63,7 +63,7 @@
 }
 
 .rules-page-image {
-  max-width: 100%;
+  width: 100%;
   height: auto;
   object-fit: contain;
 }
@@ -150,26 +150,44 @@
 
 
 
-/* Tablet View (up to 768px) */
-@media (max-width: 768px) {
-  .rules-page {
-    padding: 40px 30px;
+@media (max-width: 992px) {
+  .rules-text-block h2 {
+    font-size: 2.8rem;
   }
 
-  .rules-title {
+  .rules-text-block h1 {
     font-size: 2.2rem;
   }
 
-  .rules-subtitle {
-    font-size: 1rem;
-    margin-bottom: 30px;
+  .rules-page {
+    padding: 50px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .rules-text-block {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .rules-text-block h2 {
+    font-size: 2.2rem;
+  }
+
+  .rules-title {
+    font-size: 2rem;
   }
 
   .rule-item {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 16px 18px;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px;
   }
 
   .rule-icon {
@@ -178,36 +196,29 @@
 
   .rule-text {
     font-size: 1rem;
+    text-align: center;
   }
 }
 
-
-/* Mobile View (up to 480px) */
 @media (max-width: 480px) {
-  .rules-page {
-    padding: 30px 20px;
-  }
-
-  .rules-title {
+  .rules-text-block h2 {
     font-size: 1.8rem;
   }
 
-  .rules-subtitle {
-    font-size: 0.95rem;
+  .rules-text-block h1 {
+    font-size: 1.6rem;
+  }
+
+  .rules-page {
+    padding: 30px 16px;
   }
 
   .rule-item {
-    padding: 14px 16px;
+    padding: 16px;
     gap: 10px;
-    width: 100%;
-  }
-
-  .rule-icon {
-    font-size: 1.5rem;
   }
 
   .rule-text {
     font-size: 0.95rem;
-    line-height: 1.4;
   }
 }

@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   height: 73vh;
-  background: #f0f4ff;
+  background: linear-gradient(135deg, #fce4ec, #e1f5fe);
   padding: 40px 20px;
   position: relative;
   overflow: hidden;
@@ -185,22 +185,90 @@
   }
 }
 
-
 @media (max-width: 768px) {
   .top-content {
     flex-direction: column-reverse;
+    align-items: center;
     text-align: center;
+    gap: 40px;
+    margin-top: 30px;
+  }
+
+  .text-block {
+    margin-left: 0;
+    max-width: 100%;
+    padding: 0 16px;
   }
 
   .text-block h1 {
-    font-size: 28px;
+    font-size: 32px;
   }
 
   .text-block h2 {
-    font-size: 24px;
+    font-size: 40px;
+  }
+
+  .text-block p {
+    font-size: 16px;
   }
 
   .search-books-image {
     width: 80%;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .books-page {
+    padding: 20px;
+  }
+
+  .text-block h1 {
+    font-size: 24px;
+  }
+
+  .text-block h2 {
+    font-size: 32px;
+  }
+
+  .text-block p {
+    font-size: 14px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group label {
+    font-size: 14px;
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .search-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .books-table {
+    font-size: 12px;
+  }
+
+  .books-table th,
+  .books-table td {
+    padding: 6px;
+  }
+
+  .table-wrapper {
+    margin-top: 20px;
+  }
+
+  .no-books-msg {
+    font-size: 14px;
+    margin-top: 20px;
   }
 }

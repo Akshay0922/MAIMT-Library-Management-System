@@ -1,7 +1,5 @@
 import MaimtImage from "../../assets/maimtImage.png";
-
 import { Navbar } from '../../components/navbar/Navbar';
-
 import AboutUsImage from '../../assets/aboutUsImage.png';
 import Ball from "../../assets/ball.png";
 
@@ -14,21 +12,24 @@ export const About = () => {
 
       <div className="about-page-top-part">
         <img className="home-ball" src={Ball} alt="Ball" />
+
         <div className="top-content">
-          <div className="text-block">
+          <div className="about-text-block">
             <h1>About</h1>
             <h2>MAIMT Library</h2>
-            <p>Empowering knowledge seekers with rich resources, a peaceful environment, and modern facilities.</p>
+            <p>
+              Empowering knowledge seekers with rich resources, a peaceful environment, 
+              and modern facilities.
+            </p>
           </div>
 
           <div className="image-block">
-            <img src={AboutUsImage} alt='About Us Image' className='about-us-image' />
+            <img src={AboutUsImage} alt="About Us" className="about-us-image" />
           </div>
         </div>
       </div>
 
       <div className="about-main-wrapper">
-
         <section className="maimt-section">
           <h1 className="section-title">MAIMT</h1>
           <div className="maimt-layout">
@@ -41,7 +42,9 @@ export const About = () => {
               <p><strong>📐 Campus Area:</strong> 10+ Acres green, Wi-Fi-enabled campus</p>
               <p><strong>📋 Affiliation:</strong> Affiliated to Kurukshetra University & Approved by AICTE</p>
               <p><strong>💼 Placement Highlights:</strong> 90%+ placement record with top recruiters</p>
-              <a href="https://maimt.com" target="_blank" rel="noreferrer" className="visit-btn">Visit Official Website</a>
+              <a href="https://maimt.com" target="_blank" rel="noreferrer" className="visit-btn">
+                Visit Official Website
+              </a>
             </div>
             <div className="maimt-right">
               <img src={MaimtImage} alt="MAIMT College" className="maimt-img" />
