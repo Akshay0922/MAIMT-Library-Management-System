@@ -282,3 +282,12 @@ exports.getAllAdmin = async (req, res) => {
     res.status(500).json({ message: "Server error", error: err.message });
   }
 };
+
+exports.deleteAdmin = async(req,res)=>
+{   try {
+      await Admin.findByIdAndDelete(req.params.id);
+      res.json({ message: "Admin deleted successfully" });
+    } catch (err) {
+      res.status(500).json({ error: "Failed to delete admin" });
+    }
+}

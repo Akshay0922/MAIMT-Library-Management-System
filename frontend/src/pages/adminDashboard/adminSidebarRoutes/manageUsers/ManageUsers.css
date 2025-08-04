@@ -117,7 +117,7 @@
 }
 
 
-.btn {
+/* .btn {
   padding: 6px 15px !important;
   font-size: 11px !important;
   font-weight: 600 !important;
@@ -151,7 +151,7 @@
 
 .btn.unblock:active{
   transform: scale(0.96);
-}
+} */
 
 @media (max-width: 768px) {
   .search-bar {
@@ -166,4 +166,18 @@
     flex: 1;
     text-align: center;
   }
+}
+
+.btn.delete {
+  background-color: #03045e;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn.delete:hover {
+  background-color: #af2828;
+  color: white;
 }

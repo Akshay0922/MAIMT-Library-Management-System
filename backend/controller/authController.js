@@ -476,3 +476,15 @@ exports.changePassword = async (req, res) => {
     res.status(500).json({ message: "Failed to change password", error: error.message, success: false });
   }
 };
+
+exports.deleteUser = async(req,res)=>
+{
+   
+  try {
+    await User.findByIdAndDelete(req.params.id);
+    res.json({ message: "User deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to delete user" });
+  }
+}
+
