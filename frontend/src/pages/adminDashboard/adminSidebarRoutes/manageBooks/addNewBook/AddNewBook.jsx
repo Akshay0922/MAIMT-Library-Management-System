@@ -788,11 +788,11 @@ export const AddNewBook = () => {
                     <Form.Control type="text" name="shelfNo" value={values.shelfNo} onChange={handleChange} onBlur={handleBlur} isInvalid={touched.shelfNo && !!errors.shelfNo} />
                     <Form.Control.Feedback type="invalid">{errors.shelfNo}</Form.Control.Feedback>
                   </Form.Group></Col>
-
+{/* 
                    <Col md={4}><Form.Group><Form.Label>Shelf Number</Form.Label>
                     <Form.Control type="text" name="shelfNo" value={values.shelfNo} onChange={handleChange} onBlur={handleBlur} isInvalid={touched.shelfNo && !!errors.shelfNo} />
                     <Form.Control.Feedback type="invalid">{errors.shelfNo}</Form.Control.Feedback>
-                  </Form.Group></Col>
+                  </Form.Group></Col> */}
 
                 </Row>
 
