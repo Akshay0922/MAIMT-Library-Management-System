@@ -27,6 +27,7 @@ import { ForgotPassword } from './pages/forgotPassword/ForgotPassword.jsx';
 import { OtpVerify } from './pages/otpVerify/OtpVerify.jsx';
 import { ResetPassword } from './pages/resetPassword/ResetPassword.jsx';
 import { ChangePassword } from './pages/changePassword/ChangePassword.jsx';
+import { EditProfile } from './pages/adminDashboard/adminSidebarRoutes/adminProfile/editProfile/EditProfile.jsx';
 
 
 // ADMIN
@@ -100,6 +101,7 @@ function App() {
           <Route path="/verify-otp" element={<OtpVerify />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/change-password" element={<ChangePassword />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
 
 
 

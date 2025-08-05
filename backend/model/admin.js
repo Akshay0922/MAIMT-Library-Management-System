@@ -23,13 +23,18 @@ const adminSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        
+
     },
     lastLogin: {
-  type: Date,
-  default: null
-}
-,
+        type: Date,
+        default: null
+    }
+    ,
+
+
+    profilePic: String,
+
+    
     role: { type: String, default: "admin" }
 
 }, { timestamps: true });
