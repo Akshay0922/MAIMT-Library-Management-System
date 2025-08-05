@@ -1,12 +1,19 @@
 import { FaInstagram, FaFacebookF, FaLinkedinIn, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import maimtLogo from '../../assets/maimtLogo.png';
 import './Header.css';
 
 export const Header = () => {
+  const navigate = useNavigate();
+
+  const handleLogoClick = () => {
+    navigate('/');
+  };
+
   return (
     <section className="header">
 
-      <img className="maimtLogo" src={maimtLogo} alt="Maimt Logo" />
+      <img className="maimtLogo" src={maimtLogo} alt="Maimt Logo" onClick={handleLogoClick} />
       <h1 className='heading-line'>MAIMT</h1>
       <span className='heading-line-fullform'>Maharaja Agrasen Institute of <br />Management and Technology</span>
 
