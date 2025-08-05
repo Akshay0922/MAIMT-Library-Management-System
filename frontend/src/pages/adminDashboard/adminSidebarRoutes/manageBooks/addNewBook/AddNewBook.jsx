@@ -560,6 +560,7 @@ const validationSchema = Yup.object().shape({
   author: Yup.string().required('Author name is required'),
   edition: Yup.string().required('Edition is required'),
   department: Yup.string().required('Department is required'),
+  cost:Yup.number().required("Cost is required"),
   course: Yup.string().required('Course is required'),
   pages: Yup.number().min(1).required('Pages required'),
   noOfBooks: Yup.number().min(1).required('Number of books required'),
@@ -636,6 +637,7 @@ export const AddNewBook = () => {
               edition: '',
               department: '',
               course: '',
+              cost:'',
               pages: '',
               noOfBooks: '',
               rackNumber: '',
@@ -771,18 +773,31 @@ export const AddNewBook = () => {
                     <Form.Control type="number" name="noOfBooks" value={values.noOfBooks} onChange={handleChange} onBlur={handleBlur} isInvalid={touched.noOfBooks && !!errors.noOfBooks} />
                     <Form.Control.Feedback type="invalid">{errors.noOfBooks}</Form.Control.Feedback>
                   </Form.Group></Col>
+                  
+                   <Col md={4}><Form.Group><Form.Label>Cost Per Book</Form.Label>
+                    <Form.Control type="cost" name="cost" value={values.cost} onChange={handleChange} onBlur={handleBlur} isInvalid={touched.cost && !!errors.cost} />
+                    <Form.Control.Feedback type="invalid">{errors.cost}</Form.Control.Feedback>
+                  </Form.Group></Col>
 
                   <Col md={4}><Form.Group><Form.Label>Rack Number</Form.Label>
                     <Form.Control type="text" name="rackNumber" value={values.rackNumber} onChange={handleChange} onBlur={handleBlur} isInvalid={touched.rackNumber && !!errors.rackNumber} />
                     <Form.Control.Feedback type="invalid">{errors.rackNumber}</Form.Control.Feedback>
                   </Form.Group></Col>
-                </Row>
 
-                <Row className="mb-3">
-                  <Col md={4}><Form.Group><Form.Label>Shelf Number</Form.Label>
+                   <Col md={4}><Form.Group><Form.Label>Shelf Number</Form.Label>
                     <Form.Control type="text" name="shelfNo" value={values.shelfNo} onChange={handleChange} onBlur={handleBlur} isInvalid={touched.shelfNo && !!errors.shelfNo} />
                     <Form.Control.Feedback type="invalid">{errors.shelfNo}</Form.Control.Feedback>
                   </Form.Group></Col>
+
+                   <Col md={4}><Form.Group><Form.Label>Shelf Number</Form.Label>
+                    <Form.Control type="text" name="shelfNo" value={values.shelfNo} onChange={handleChange} onBlur={handleBlur} isInvalid={touched.shelfNo && !!errors.shelfNo} />
+                    <Form.Control.Feedback type="invalid">{errors.shelfNo}</Form.Control.Feedback>
+                  </Form.Group></Col>
+
+                </Row>
+
+                <Row className="mb-3">
+                 
 
                   <Col md={4}><Form.Group><Form.Label>Publisher</Form.Label>
                     <div className="input-suggestion-wrapper">
@@ -802,14 +817,14 @@ export const AddNewBook = () => {
                     <Form.Control type="number" name="year" value={values.year} onChange={handleChange} onBlur={handleBlur} isInvalid={touched.year && !!errors.year} />
                     <Form.Control.Feedback type="invalid">{errors.year}</Form.Control.Feedback>
                   </Form.Group></Col>
-                </Row>
 
-                <Row className="mb-3">
-                  <Col md={12}><Form.Group><Form.Label>Place</Form.Label>
+                    <Col md={4}><Form.Group><Form.Label>Place</Form.Label>
                     <Form.Control type="text" name="place" value={values.place} onChange={handleChange} onBlur={handleBlur} isInvalid={touched.place && !!errors.place} />
                     <Form.Control.Feedback type="invalid">{errors.place}</Form.Control.Feedback>
                   </Form.Group></Col>
                 </Row>
+
+                
 
                 <Button type="submit" className="w-100 submit-btn">Add Book</Button>
               </Form>
