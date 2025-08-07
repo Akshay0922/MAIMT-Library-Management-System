@@ -1,8 +1,13 @@
-// const express = require("express");
-// const router = express.Router();
-// const controller = require("../controller/issueController");
+// routes/issueRoutes.js
 
-// router.post("/issue-book", controller.issueBook); // Submit
-// router.post("/fetch-book-student", controller.fetchBookAndStudent); // Autofill
+const express = require("express");
+const router = express.Router();
+const controller = require("../controller/issueController");
 
-// module.exports = router;
+// 🔁 Info route (student + book by accessionNo)
+// router.post("/info", controller.getStudentAndBookInfo);
+
+// 📚 Issue book route
+router.post("/issue", controller.issueBook);
+
+module.exports = router;
