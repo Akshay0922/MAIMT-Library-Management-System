@@ -117,8 +117,8 @@ function App() {
           <Route path="/return-book" element={<ReturnBook />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/admin-logout" element={<AdminLogout />} />
-          <Route path = "/vendor-detail" element={<VendorPage/>}></Route>
-          <Route path = "/review-books" element = {<BookReviewPage/>}></Route>
+          <Route path = "/vendor-detail" element={<VendorPage/>} />
+          <Route path = "/review-books" element = {<BookReviewPage/>} />
 
 
 
