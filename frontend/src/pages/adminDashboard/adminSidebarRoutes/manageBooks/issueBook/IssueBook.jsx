@@ -187,6 +187,154 @@
 
 
 
+// import { Formik } from 'formik';
+// import * as Yup from 'yup';
+// import { Button, Card, Container, Form, Row, Col } from 'react-bootstrap';
+// import { toast } from 'react-toastify';
+// import { useNavigate } from 'react-router-dom';
+// import { AdminSidebar } from '../../AdminSidebar';
+// import './issueBook.css';
+// import axios from 'axios';
+// import { useState } from 'react';
+
+// const validationSchema = Yup.object().shape({
+//   rollNo: Yup.string().required('Roll No is required'),
+//   accessionNo: Yup.string().required('Accession No is required'),
+// });
+
+// export const IssueBook = () => {
+//   const navigate = useNavigate();
+//   const [student, setStudent] = useState({});
+//   const [book, setBook] = useState({});
+
+//   const fetchDetails = async (rollNo, accessionNo) => {
+//     try {
+//       const res = await axios.post("http://localhost:3000/library/fetch-book-student", {
+//         rollNo,
+//         accessionNo
+//       });
+
+//       const { studentName, department, title, dueDate } = res.data;
+//       setStudent({ studentName, department });
+//       setBook({ title, dueDate });
+//     } catch (err) {
+//       toast.error("Student or book not found");
+//     }
+//   };
+
+//   return (
+//     <div className="admin-dashboard">
+//       <AdminSidebar />
+//       <div className="admin-issue-book-main-content shrink">
+//         <div className="mb-2">
+//           <Button variant="light" className="back-btn" onClick={() => navigate(-1)}>Back</Button>
+//         </div>
+
+//         <Container className="d-flex justify-content-center align-items-center h-100">
+//           <Card className="p-4 issue-book-container">
+//             <h5 className="text-center fw-bold mb-4 issue-book-heading">ISSUE BOOK</h5>
+
+//             <Formik
+//               initialValues={{ rollNo: '', accessionNo: '' }}
+//               validationSchema={validationSchema}
+//               onSubmit={async (values, { resetForm }) => {
+//                 try {
+//                   const res = await axios.post("http://localhost:3000/library/issue-book", values);
+//                   if (res.status === 201) {
+//                     toast.success("Book issued successfully!");
+//                     resetForm();
+//                     setStudent({});
+//                     setBook({});
+//                     navigate("/issued-books");
+//                   }
+//                 } catch (err) {
+//                   toast.error("Issuing failed");
+//                 }
+//               }}
+//             >
+//               {({ handleSubmit, handleChange, values, touched, errors }) => (
+//                 <Form noValidate onSubmit={handleSubmit} className="form-data">
+//                   <Row className="mb-3">
+//                     <Col md={6}>
+//                       <Form.Group>
+//                         <Form.Label>Roll No</Form.Label>
+//                         <Form.Control
+//                           type="text"
+//                           name="rollNo"
+//                           value={values.rollNo}
+//                           onChange={(e) => {
+//                             handleChange(e);
+//                             fetchDetails(e.target.value, values.accessionNo);
+//                           }}
+//                           isInvalid={touched.rollNo && !!errors.rollNo}
+//                         />
+//                         <Form.Control.Feedback type="invalid">{errors.rollNo}</Form.Control.Feedback>
+//                       </Form.Group>
+//                     </Col>
+//                     <Col md={6}>
+//                       <Form.Group>
+//                         <Form.Label>Name</Form.Label>
+//                         <Form.Control type="text" value={student.studentName || ''} disabled />
+//                       </Form.Group>
+//                     </Col>
+//                   </Row>
+
+//                   <Row className="mb-3">
+//                     <Col md={6}>
+//                       <Form.Group>
+//                         <Form.Label>Department</Form.Label>
+//                         <Form.Control type="text" value={student.department || ''} disabled />
+//                       </Form.Group>
+//                     </Col>
+//                     <Col md={6}>
+//                       <Form.Group>
+//                         <Form.Label>Accession No</Form.Label>
+//                         <Form.Control
+//                           type="text"
+//                           name="accessionNo"
+//                           value={values.accessionNo}
+//                           onChange={(e) => {
+//                             handleChange(e);
+//                             fetchDetails(values.rollNo, e.target.value);
+//                           }}
+//                           isInvalid={touched.accessionNo && !!errors.accessionNo}
+//                         />
+//                         <Form.Control.Feedback type="invalid">{errors.accessionNo}</Form.Control.Feedback>
+//                       </Form.Group>
+//                     </Col>
+//                   </Row>
+
+//                   <Row className="mb-3">
+//                     <Col md={6}>
+//                       <Form.Group>
+//                         <Form.Label>Title</Form.Label>
+//                         <Form.Control type="text" value={book.title || ''} disabled />
+//                       </Form.Group>
+//                     </Col>
+//                     <Col md={6}>
+//                       <Form.Group>
+//                         <Form.Label>Due Date</Form.Label>
+//                         <Form.Control
+//                           type="text"
+//                           value={book.dueDate ? new Date(book.dueDate).toLocaleDateString() : ''}
+//                           disabled
+//                         />
+//                       </Form.Group>
+//                     </Col>
+//                   </Row>
+
+//                   <Button type="submit" className="w-100 submit-btn">Issue Book</Button>
+//                 </Form>
+//               )}
+//             </Formik>
+//           </Card>
+//         </Container>
+//       </div>
+//     </div>
+//   );
+// };
+
+
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Button, Card, Container, Form, Row, Col } from 'react-bootstrap';
@@ -199,26 +347,38 @@ import { useState } from 'react';
 
 const validationSchema = Yup.object().shape({
   rollNo: Yup.string().required('Roll No is required'),
+  studentName: Yup.string().required('Student Name is required'),
+  department: Yup.string().required('Department is required'),
   accessionNo: Yup.string().required('Accession No is required'),
+  title: Yup.string().required('Book Title is required'),
+  dueDate: Yup.date().required('Due Date is required')
 });
 
 export const IssueBook = () => {
   const navigate = useNavigate();
-  const [student, setStudent] = useState({});
-  const [book, setBook] = useState({});
+  const [loading, setLoading] = useState(false);
 
-  const fetchDetails = async (rollNo, accessionNo) => {
+  const fetchDetails = async (rollNo, accessionNo, setFieldValue) => {
+    if (!rollNo || !accessionNo) return;
+
     try {
-      const res = await axios.post("http://localhost:3000/library/fetch-book-student", {
+      const res = await axios.post("http://localhost:3000/library/info", {
         rollNo,
         accessionNo
       });
 
-      const { studentName, department, title, dueDate } = res.data;
-      setStudent({ studentName, department });
-      setBook({ title, dueDate });
+      const { userName, title, author, accessionNo: accNo } = res.data;
+
+      setFieldValue("studentName", userName || '');
+      setFieldValue("title", title || '');
+
+      // ✅ Due date default 3 months from now
+      const due = new Date();
+      due.setMonth(due.getMonth() + 3);
+      setFieldValue("dueDate", due.toISOString().slice(0, 10)); // yyyy-mm-dd
+
     } catch (err) {
-      toast.error("Student or book not found");
+      toast.error("❌ Info not found for RollNo / AccessionNo");
     }
   };
 
@@ -235,24 +395,30 @@ export const IssueBook = () => {
             <h5 className="text-center fw-bold mb-4 issue-book-heading">ISSUE BOOK</h5>
 
             <Formik
-              initialValues={{ rollNo: '', accessionNo: '' }}
+              initialValues={{
+                rollNo: '',
+                studentName: '',
+                department: '',
+                accessionNo: '',
+                title: '',
+                dueDate: ''
+              }}
               validationSchema={validationSchema}
               onSubmit={async (values, { resetForm }) => {
+                setLoading(true);
                 try {
-                  const res = await axios.post("http://localhost:3000/library/issue-book", values);
-                  if (res.status === 201) {
-                    toast.success("Book issued successfully!");
-                    resetForm();
-                    setStudent({});
-                    setBook({});
-                    navigate("/issued-books");
-                  }
+                  const res = await axios.post("http://localhost:3000/issue/issue", values);
+                  toast.success("✅ Book issued successfully!");
+                  resetForm();
+                  navigate("/issued-books");
                 } catch (err) {
-                  toast.error("Issuing failed");
+                  toast.error("❌ Issue failed");
+                } finally {
+                  setLoading(false);
                 }
               }}
             >
-              {({ handleSubmit, handleChange, values, touched, errors }) => (
+              {({ handleSubmit, handleChange, values, touched, errors, setFieldValue }) => (
                 <Form noValidate onSubmit={handleSubmit} className="form-data">
                   <Row className="mb-3">
                     <Col md={6}>
@@ -264,7 +430,7 @@ export const IssueBook = () => {
                           value={values.rollNo}
                           onChange={(e) => {
                             handleChange(e);
-                            fetchDetails(e.target.value, values.accessionNo);
+                            fetchDetails(e.target.value, values.accessionNo, setFieldValue);
                           }}
                           isInvalid={touched.rollNo && !!errors.rollNo}
                         />
@@ -273,8 +439,15 @@ export const IssueBook = () => {
                     </Col>
                     <Col md={6}>
                       <Form.Group>
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control type="text" value={student.studentName || ''} disabled />
+                        <Form.Label>Student Name</Form.Label>
+                        <Form.Control
+                          type="text"
+                          name="studentName"
+                          value={values.studentName}
+                          onChange={handleChange}
+                          isInvalid={touched.studentName && !!errors.studentName}
+                        />
+                        <Form.Control.Feedback type="invalid">{errors.studentName}</Form.Control.Feedback>
                       </Form.Group>
                     </Col>
                   </Row>
@@ -283,9 +456,17 @@ export const IssueBook = () => {
                     <Col md={6}>
                       <Form.Group>
                         <Form.Label>Department</Form.Label>
-                        <Form.Control type="text" value={student.department || ''} disabled />
+                        <Form.Control
+                          type="text"
+                          name="department"
+                          value={values.department}
+                          onChange={handleChange}
+                          isInvalid={touched.department && !!errors.department}
+                        />
+                        <Form.Control.Feedback type="invalid">{errors.department}</Form.Control.Feedback>
                       </Form.Group>
                     </Col>
+
                     <Col md={6}>
                       <Form.Group>
                         <Form.Label>Accession No</Form.Label>
@@ -295,7 +476,7 @@ export const IssueBook = () => {
                           value={values.accessionNo}
                           onChange={(e) => {
                             handleChange(e);
-                            fetchDetails(values.rollNo, e.target.value);
+                            fetchDetails(values.rollNo, e.target.value, setFieldValue);
                           }}
                           isInvalid={touched.accessionNo && !!errors.accessionNo}
                         />
@@ -308,22 +489,35 @@ export const IssueBook = () => {
                     <Col md={6}>
                       <Form.Group>
                         <Form.Label>Title</Form.Label>
-                        <Form.Control type="text" value={book.title || ''} disabled />
+                        <Form.Control
+                          type="text"
+                          name="title"
+                          value={values.title}
+                          onChange={handleChange}
+                          isInvalid={touched.title && !!errors.title}
+                        />
+                        <Form.Control.Feedback type="invalid">{errors.title}</Form.Control.Feedback>
                       </Form.Group>
                     </Col>
+
                     <Col md={6}>
                       <Form.Group>
                         <Form.Label>Due Date</Form.Label>
                         <Form.Control
-                          type="text"
-                          value={book.dueDate ? new Date(book.dueDate).toLocaleDateString() : ''}
-                          disabled
+                          type="date"
+                          name="dueDate"
+                          value={values.dueDate}
+                          onChange={handleChange}
+                          isInvalid={touched.dueDate && !!errors.dueDate}
                         />
+                        <Form.Control.Feedback type="invalid">{errors.dueDate}</Form.Control.Feedback>
                       </Form.Group>
                     </Col>
                   </Row>
 
-                  <Button type="submit" className="w-100 submit-btn">Issue Book</Button>
+                  <Button type="submit" className="w-100 submit-btn" disabled={loading}>
+                    {loading ? "Processing..." : "Issue Book"}
+                  </Button>
                 </Form>
               )}
             </Formik>
