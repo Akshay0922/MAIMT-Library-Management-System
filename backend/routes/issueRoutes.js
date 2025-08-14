@@ -1,13 +1,8 @@
-// routes/issueRoutes.js
+// const express = require("express");
+// const router = express.Router();
+// const controller = require("../controller/issueController");
 
-const express = require("express");
-const router = express.Router();
-const controller = require("../controller/issueController");
+// router.post("/issue-book", controller.issueBook); // Submit
+// router.post("/fetch-book-student", controller.fetchBookAndStudent); // Autofill
 
-// 🔁 Info route (student + book by accessionNo)
-// router.post("/info", controller.getStudentAndBookInfo);
-
-// 📚 Issue book route
-router.post("/issue", controller.issueBook);
-
-module.exports = router;
+// module.exports = router;
