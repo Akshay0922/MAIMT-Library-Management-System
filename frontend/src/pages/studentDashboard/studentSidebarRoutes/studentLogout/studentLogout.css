@@ -1,0 +1,59 @@
+.student-logout-main-content {
+  flex: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: margin-left 0.3s ease;
+  border-radius: 22px;
+  margin: 20px;
+}
+
+.student-logout-content-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+  border-radius: 0 22px;
+  padding: 31px;
+  max-width: 444px;
+  width: 100%;
+  text-align: center;
+}
+
+.student-logout-content-card h4 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 22px;
+  color: #03045e;
+}
+
+.student-logout-text-muted {
+  color: black;
+  font-size: 14px;
+  margin-bottom: 22px;
+}
+
+.student-logout-icon {
+  color: red;
+  font-size: 31px;
+  margin-bottom: 22px;
+}
+
+.student-logout-btn {
+  background-color: #03045e;
+  padding: 6px 14px;
+  color: white;
+  margin-top: 11px;
+  font-weight: 600;
+  border: none;
+  border-radius: 0 15px;
+  transition: all 0.3s ease;
+}
+
+.student-logout-btn:hover {
+  background-color: red;
+  transform: translateY(-6px);
+}
