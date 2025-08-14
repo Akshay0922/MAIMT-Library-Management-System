@@ -554,7 +554,11 @@ exports.getBookByISBN = async (req, res) => {
       .populate('author')
       .populate('publisher')
       .populate('department')
-      .populate('course');
+      .populate('course')
+      .populate({
+        path: 'copies.vendorBill',
+        populate: { path: 'vendor' }
+      });
 
     if (!book) return res.status(404).json({ message: 'Book not found' });
 
