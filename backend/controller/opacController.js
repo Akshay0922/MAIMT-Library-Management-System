@@ -1,4 +1,4 @@
-const Book  = require("../model/BookVolume");
+const Book  = require("../model/bookSchema");
 exports.searchBooks = async (req, res) => {
   try {
     const { title, author, course, department, year, availableOnly, edition , publisher , rackNumber,shelfNo,} = req.body;
