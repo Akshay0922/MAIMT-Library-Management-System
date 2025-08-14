@@ -4,9 +4,9 @@ import { ToastContainer } from 'react-toastify';
 
 // REUSABLE COMPONENTS
 
-import {Header} from './components/header/Header.jsx';
-import {Footer} from './components/footer/Footer.jsx';
-import {ScrollToTop} from './components/scrollToTop/ScrollToTop.jsx';
+import { Header } from './components/header/Header.jsx';
+import { Footer } from './components/footer/Footer.jsx';
+import { ScrollToTop } from './components/scrollToTop/ScrollToTop.jsx';
 
 
 // OPAC- Online Public Access Catalog
@@ -117,8 +117,8 @@ function App() {
           <Route path="/return-book" element={<ReturnBook />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/admin-logout" element={<AdminLogout />} />
-          <Route path = "/vendor-detail" element={<VendorPage/>}></Route>
-          <Route path = "/review-books" element = {<BookReviewPage/>}></Route>
+          <Route path="/vendor-detail" element={<VendorPage />} />
+          <Route path="/review-books" element={<BookReviewPage />} />
 
 
 
