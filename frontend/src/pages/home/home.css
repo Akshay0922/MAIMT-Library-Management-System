@@ -7,7 +7,7 @@
 }
 
 .home-top-part {
-  background: linear-gradient(135deg, #fce4ec, #e1f5fe);
+  background-color: #f0f4ff;
   width: 100%;
   height: 73vh;
   margin-bottom: 0;
@@ -23,9 +23,10 @@
   
 .home-ball {
   position: absolute;
-  top: 10%;
+  top: 11%;
   left: 0;
   width: 100px;
+  height: auto;
   animation: float 3s ease-in-out infinite;
   filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.2));
 }
@@ -188,49 +189,64 @@
 @media (max-width: 768px) {
   .home-top-part {
     height: auto;
-    padding-top: 30px;
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    gap: 30px;
-  }
-
-  .home-hero {
-    width: 100%;
-    text-align: center;
-    padding: 30px 20px 0;
   }
 
   .home-image {
-    width: 80%;
-    height: auto;
-    max-width: 350px;
     position: static;
+    width: 333px;
+    height: 333px;
+    display: block;
     margin: 0 auto;
   }
 
+  .home-hero {
+    width: 90%;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
   .home-hero h1 {
-    font-size: 32px;
+    font-size: 36px;
   }
 
   .home-hero h2 {
-    font-size: 46px;
+    font-size: 50px;
   }
 
   .home-hero p {
-    font-size: 16px;
+    font-size: 17px;
+  }
+
+  .home-ball {
+    display: none;
   }
 
   .home-departments {
-    padding: 40px 20px;
     height: auto;
+    padding: 40px 20px;
+  }
+
+  .home-dept-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+  }
+
+  .dept-card-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   .dept-card {
-    width: 100%;
-    max-width: 320px;
+    width: 90%;
+    max-width: 300px;
     height: auto;
-    padding: 16px;
+    padding: 20px 15px;
   }
 
   .dept-card span {
@@ -240,21 +256,13 @@
   .full-form {
     font-size: 1rem;
   }
-
-  .dept-card-image-wrapper {
-    width: 90px;
-    height: 90px;
-  }
-
-  .home-dept-grid {
-    flex-direction: column;
-    gap: 30px;
-  }
 }
+
+
 
 @media (max-width: 480px) {
   .home-hero h1 {
-    font-size: 24px;
+    font-size: 28px;
   }
 
   .home-hero h2 {
@@ -286,14 +294,5 @@
   .dept-card {
     width: 95%;
     padding: 18px 12px;
-  }
-
-  .dept-card-image-wrapper {
-    width: 80px;
-    height: 80px;
-  }
-
-  .home-departments h3 {
-    font-size: 1.8rem;
   }
 }
