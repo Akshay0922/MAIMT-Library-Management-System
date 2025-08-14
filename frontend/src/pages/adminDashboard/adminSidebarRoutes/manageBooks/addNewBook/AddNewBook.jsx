@@ -636,7 +636,6 @@ export const AddNewBook = () => {
               author: '',
               edition: '',
               department: '',
-               vendorBill: '',
               course: '',
               cost:'',
               pages: '',

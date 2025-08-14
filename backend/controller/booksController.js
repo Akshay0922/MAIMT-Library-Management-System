@@ -246,154 +246,9 @@ const Department = require('../model/Department');
 //   }
 // };
 
-// exports.addBookVolume = async (req, res) => {
-//   try {
-//     const { author, publisher, department, vendorBill, course, noOfBooks, rackNo, shelfNo, cost, ...rest } = req.body;
-
-//     // 1) Author
-//     const authorName = author.name.trim();
-//     let authorDoc = await Author.findOne({ name: authorName });
-//     if (!authorDoc) authorDoc = await Author.create({ name: authorName });
-
-//     // 2) Publisher
-//     let publisherDoc;
-//     if (publisher?.name?.trim()) {
-//       const publisherName = publisher.name.trim();
-//       publisherDoc = await Publisher.findOne({ name: publisherName });
-//       if (!publisherDoc) {
-//         publisherDoc = await Publisher.create({
-//           name: publisherName,
-//           place: publisher.place?.trim() || ""
-//         });
-//       }
-//     }
-
-//     // 3) Department
-//     const deptName = department.name.trim();
-//     let deptDoc = await Department.findOne({ name: deptName });
-//     if (!deptDoc) deptDoc = await Department.create({ name: deptName });
-
-//     // 4) Course
-//     const courseName = course.name.trim();
-//     let courseDoc = await Course.findOne({ name: courseName });
-//     if (!courseDoc) {
-//       courseDoc = await Course.create({
-//         name: courseName,
-//         department: deptDoc._id,
-//         lastAccessionNo: 0
-//       });
-//     } else {
-//       if (!courseDoc.department) {
-//         courseDoc.department = deptDoc._id;
-//         await courseDoc.save();
-//       }
-//     }
-
-//     await courseDoc.populate('department');
-
-//     // ✅ vendorBill handle
-//     let vendorBillId = null;
-
-//     if (req.body.vendorBill?.billNo && req.body.vendorBill?.vendor) {
-//       const vendorName = req.body.vendorBill.vendor;
-//       let foundVendor = await Vendor.findOne({ name: vendorName });
-
-//       if (!foundVendor) {
-//         foundVendor = await Vendor.create({ name: vendorName });
-//       }
-
-//       let foundVendorBill = await VendorBill.findOne({
-//         vendor: foundVendor._id,
-//         billNo: req.body.vendorBill.billNo
-//       });
-
-//       if (!foundVendorBill) {
-//         foundVendorBill = await VendorBill.create({
-//           vendor: foundVendor._id,
-//           billNo: req.body.vendorBill.billNo,
-//           billDate: req.body.vendorBill.billDate,
-//           costPerCopy: req.body.vendorBill.cost
-//         });
-//       }
-
-//       vendorBillId = foundVendorBill._id;
-//     }
-
-//     let start = courseDoc.lastAccessionNo || 0;
-//     const copies = [];
-
-//     for (let i = 0; i < Number(noOfBooks); i++) {
-//       start += 1;
-//       copies.push({
-//         accessionNo: start,
-//         rackNo,
-//         shelfNo,
-//         cost: Number(cost || 0),
-//         vendorBill: vendorBillId,
-//         status: 'available',
-//         entryDate: new Date()
-//       });
-//     }
-
-//     courseDoc.lastAccessionNo = start;
-//     await courseDoc.save();
-
-//     const existingBook = await BookVolume.findOne({
-//       title: rest.title,
-//       edition: rest.edition,
-//       author: authorDoc._id,
-//       publisher: publisherDoc?._id,
-//       course: courseDoc._id
-//     });
-
-//     if (existingBook) {
-//       existingBook.copies.push(...copies);
-//       await existingBook.save();
-//       return res.status(200).json({
-//         message: "📚 Copies added to existing book",
-//         book: existingBook
-//       });
-//     }
-
-//     const bookData = {
-//       ...rest,
-//       cost: Number(cost || 0),
-//       author: authorDoc._id,
-//       publisher: publisherDoc?._id,
-//       department: deptDoc._id,
-//       course: courseDoc._id,
-//       copies
-//     };
-
-//     const book = await BookVolume.create(bookData);
-//     return res.status(201).json({
-//       message: "✅ Book saved successfully!",
-//       book
-//     });
-
-//   } catch (error) {
-//     console.error("❌ Error saving book:", error);
-//     return res.status(500).json({
-//       message: "Server error",
-//       error: error.message || error
-//     });
-//   }
-// };
-
 exports.addBookVolume = async (req, res) => {
   try {
-    const {
-      author,
-      publisher,
-      department,
-      vendorBill,
-      course,
-      noOfBooks,
-      rackNo,
-      shelfNo,
-      cost,
-      ...rest
-    } = req.body;
+    const { author, publisher, department, course, noOfBooks, rackNo, shelfNo, cost, ...rest } = req.body;
 
     // 1) Author
     const authorName = author.name.trim();
@@ -427,41 +282,43 @@ exports.addBookVolume = async (req, res) => {
         department: deptDoc._id,
         lastAccessionNo: 0
       });
-    } else if (!courseDoc.department) {
-      courseDoc.department = deptDoc._id;
-      await courseDoc.save();
+    } else {
+      if (!courseDoc.department) {
+        courseDoc.department = deptDoc._id;
+        await courseDoc.save();
+      }
     }
 
     await courseDoc.populate('department');
 
-    // 5) VendorBill handle
+    // ✅ vendorBill handle
     let vendorBillId = null;
 
-    if (vendorBill?.billNo && vendorBill?.vendor) {
-      const vendorName = vendorBill.vendor;
+    if (req.body.vendorBill?.billNo && req.body.vendorBill?.vendor) {
+      const vendorName = req.body.vendorBill.vendor;
       let foundVendor = await Vendor.findOne({ name: vendorName });
+
       if (!foundVendor) {
         foundVendor = await Vendor.create({ name: vendorName });
       }
 
       let foundVendorBill = await VendorBill.findOne({
         vendor: foundVendor._id,
-        billNo: vendorBill.billNo
+        billNo: req.body.vendorBill.billNo
       });
 
       if (!foundVendorBill) {
         foundVendorBill = await VendorBill.create({
           vendor: foundVendor._id,
-          billNo: vendorBill.billNo,
-          billDate: vendorBill.billDate,
-          costPerCopy: vendorBill.cost
+          billNo: req.body.vendorBill.billNo,
+          billDate: req.body.vendorBill.billDate,
+          costPerCopy: req.body.vendorBill.cost
         });
       }
 
       vendorBillId = foundVendorBill._id;
     }
 
-    // 6) Copies generation
     let start = courseDoc.lastAccessionNo || 0;
     const copies = [];
 
@@ -472,7 +329,7 @@ exports.addBookVolume = async (req, res) => {
         rackNo,
         shelfNo,
         cost: Number(cost || 0),
-        vendorBill: vendorBillId, // ✅ vendorBill link
+        vendorBill: vendorBillId,
         status: 'available',
         entryDate: new Date()
       });
@@ -481,7 +338,6 @@ exports.addBookVolume = async (req, res) => {
     courseDoc.lastAccessionNo = start;
     await courseDoc.save();
 
-    // 7) Check if book already exists
     const existingBook = await BookVolume.findOne({
       title: rest.title,
       edition: rest.edition,
@@ -492,28 +348,24 @@ exports.addBookVolume = async (req, res) => {
 
     if (existingBook) {
       existingBook.copies.push(...copies);
-      if (vendorBillId) existingBook.vendorBill = vendorBillId; // ✅ root vendorBill update
       await existingBook.save();
-
       return res.status(200).json({
         message: "📚 Copies added to existing book",
         book: existingBook
       });
     }
 
-    // 8) New Book entry
     const bookData = {
       ...rest,
+      cost: Number(cost || 0),
       author: authorDoc._id,
       publisher: publisherDoc?._id,
       department: deptDoc._id,
       course: courseDoc._id,
-      vendorBill: vendorBillId, // ✅ root vendorBill
       copies
     };
 
     const book = await BookVolume.create(bookData);
-
     return res.status(201).json({
       message: "✅ Book saved successfully!",
       book
