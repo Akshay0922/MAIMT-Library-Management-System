@@ -407,7 +407,7 @@ export const IssueBook = () => {
               onSubmit={async (values, { resetForm }) => {
                 setLoading(true);
                 try {
-                  const res = await axios.post("http://localhost:3000/issue/issue", values);
+                  const res = await axios.post("http://localhost:3000/library/issue", values);
                   toast.success("✅ Book issued successfully!");
                   resetForm();
                   navigate("/issued-books");
