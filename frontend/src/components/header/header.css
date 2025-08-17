@@ -20,6 +20,10 @@
   cursor: pointer;
 }
 
+.maimtLogo:active{
+  transform: scale(0.96);
+}
+
 .heading-line {
   position: absolute;
   left: 160px;
@@ -118,7 +122,6 @@
 .bookmark-text a:hover {
   color: #ffd60a;
 }
-
 
 /* RESPONSIVENESS */
 @media (max-width: 768px) {
