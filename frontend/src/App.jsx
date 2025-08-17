@@ -4,14 +4,20 @@ import { ToastContainer } from 'react-toastify';
 
 // REUSABLE COMPONENTS
 
-import {Header} from './components/header/Header.jsx';
-import {Footer} from './components/footer/Footer.jsx';
-import {ScrollToTop} from './components/scrollToTop/ScrollToTop.jsx';
+import { Header } from './components/header/Header.jsx';
+import { Footer } from './components/footer/Footer.jsx';
+import { ScrollToTop } from './components/scrollToTop/ScrollToTop.jsx';
 
 
 // OPAC- Online Public Access Catalog
 
 import { Home } from './pages/home/Home.jsx';
+
+import { Mca } from "./pages/home/departments/Mca";
+import { Mba } from "./pages/home/departments/Mba";
+import { Bba } from "./pages/home/departments/Bba";
+import { Bca } from "./pages/home/departments/Bca";
+
 import { About } from './pages/about/About.jsx';
 import { Rules } from './pages/rules/Rules.jsx';
 import { Books } from './pages/books/Books.jsx';
@@ -85,6 +91,12 @@ function App() {
           <Route path="/" element={<Home />} />
 
           <Route path="/home" element={<Home />} />
+
+          <Route path="/departments/mca" element={<Mca />} />
+          <Route path="/departments/mba" element={<Mba />} />
+          <Route path="/departments/bba" element={<Bba />} />
+          <Route path="/departments/bca" element={<Bca />} />
+
           <Route path="/about" element={<About />} />
           <Route path="/rules" element={<Rules />} />
           <Route path="/books" element={<Books />} />
@@ -117,8 +129,8 @@ function App() {
           <Route path="/return-book" element={<ReturnBook />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/admin-logout" element={<AdminLogout />} />
-          <Route path = "/vendor-detail" element={<VendorPage/>}></Route>
-          <Route path = "/review-books" element = {<BookReviewPage/>}></Route>
+          <Route path="/vendor-detail" element={<VendorPage />}></Route>
+          <Route path="/review-books" element={<BookReviewPage />}></Route>
 
 
 

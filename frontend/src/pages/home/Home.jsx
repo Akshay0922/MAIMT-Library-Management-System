@@ -40,6 +40,7 @@ export const Home = () => {
         <img className="home-ball" src={Ball} alt="Ball" />
 
         <div className="home-top-part">
+          <img ref={imageRef} className="home-image" src={HomePageImage} alt='Home Image' />
           <section ref={heroRef} className="home-hero">
             <h1>Welcome to</h1>
             <h2>MAIMT Library</h2>
@@ -49,7 +50,6 @@ export const Home = () => {
             </div>
           </section>
 
-          <img ref={imageRef} className="home-image" src={HomePageImage} alt='Home Image' />
         </div>
 
         <section className="home-departments">

@@ -1,0 +1,224 @@
+/* Root Styling */
+.dept-page {
+  padding: 50px 10%;
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  color: #222;
+  background: linear-gradient(-45deg, #f0fdfa, #d2ffe2, #e1feef, #dcfce7);
+  background-size: 400% 400%;
+  animation: gradientFlow 12s ease infinite;
+  min-height: 100vh;
+}
+
+/* Header Section */
+.dept-header {
+  text-align: center;
+  margin-bottom: 50px;
+  animation: fadeInDown 1s ease-in-out;
+}
+
+.dept-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #064e3b;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.dept-header p {
+  font-size: 1.2rem;
+  color: #333;
+  max-width: 750px;
+  margin: auto;
+  line-height: 1.8;
+}
+
+/* Section Styling */
+.dept-section {
+  margin-bottom: 50px;
+  padding: 35px;
+  border-radius: 20px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+  transition: all 0.35s ease;
+  transform-style: preserve-3d;
+}
+
+.dept-section:hover {
+  transform: translateY(-8px) rotateX(1deg);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.dept-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #065f46;
+  text-align: center;
+  font-weight: 600;
+  position: relative;
+}
+
+.dept-section h2::after {
+  content: "";
+  display: block;
+  width: 70px;
+  height: 4px;
+  background: linear-gradient(90deg, #10b981, #34d399);
+  border-radius: 2px;
+  margin: 10px auto 0;
+}
+
+.dept-section p,
+.dept-section ul {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #444;
+}
+
+.dept-section ul {
+  margin-left: 25px;
+  list-style: none;
+}
+
+.dept-section ul li::before {
+  content: "✔️";
+  margin-right: 8px;
+  color: #059669;
+}
+
+/* Benefits Section */
+.benefits .benefit-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+  margin-top: 25px;
+}
+
+.benefit-card {
+  background: linear-gradient(145deg, #ecfdf5, #ffffff);
+  border-radius: 16px;
+  padding: 25px;
+  text-align: center;
+  border: 1px solid rgba(5, 150, 105, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  background: linear-gradient(145deg, #d1fae5, #ffffff);
+}
+
+.benefit-card h3 {
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+  color: #047857;
+  font-weight: 600;
+}
+
+.benefit-card p {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* CTA Section */
+.dept-cta {
+  text-align: center;
+  background: linear-gradient(135deg, #10b981, #059669);
+  padding: 60px 20px;
+  border-radius: 20px;
+  margin-top: 70px;
+  color: white;
+  animation: fadeInUp 1s ease-in-out;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
+}
+
+.dept-cta h2 {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.dept-cta p {
+  font-size: 1.15rem;
+  margin-bottom: 30px;
+}
+
+/* Apply Button */
+.apply-btn {
+  background: linear-gradient(90deg, #ffffff, #e6fffa);
+  color: #065f46;
+  border: none;
+  padding: 14px 36px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.apply-btn:hover {
+  background: linear-gradient(90deg, #065f46, #047857);
+  color: white;
+  transform: scale(1.07);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Ripple Effect */
+.apply-btn::after {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: rgba(255, 255, 255, 0.2);
+  top: -10%;
+  left: -10%;
+  transform: scale(0);
+  border-radius: 50%;
+  transition: transform 0.5s ease;
+}
+
+.apply-btn:active::after {
+  transform: scale(1.2);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dept-page {
+    padding: 30px 20px;
+  }
+
+  .dept-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .dept-section {
+    padding: 22px;
+  }
+
+  .dept-cta h2 {
+    font-size: 1.7rem;
+  }
+}

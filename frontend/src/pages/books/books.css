@@ -1,7 +1,7 @@
 .books-page {
   font-family: 'Segoe UI', sans-serif;
   padding: 60px;
-  background: linear-gradient(90deg, #f0f4ff, #fffaf0, #eafff1);
+  background: linear-gradient(135deg, #f9f9ff 0%, #fdf7ff 40%, #f5fff9 100%);
 }
 
 .books-page-top-part {

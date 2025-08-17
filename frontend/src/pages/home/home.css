@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, #f0f4ff 0%, #fff5f9 40%, #f0f4ff 65%, #e8ffea 95%);
+  background: linear-gradient(135deg, #f9f9ff 0%, #fdf7ff 40%, #f5fff9 100%);
   font-family: 'Segoe UI', sans-serif;
 }
 
@@ -194,9 +194,10 @@
   .home-image {
     position: static;
     width: 333px;
-    height: 333px;
+    height: 250px;
     display: block;
     margin: 0 auto;
+    padding: 31px 0;
   }
 
   .home-hero {

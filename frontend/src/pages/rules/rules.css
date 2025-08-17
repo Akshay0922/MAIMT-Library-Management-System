@@ -2,7 +2,7 @@
   padding: 60px 111px;
   margin: auto;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(90deg, #f0f4ff, #fffaf0, #eafff1);
+  background: linear-gradient(135deg, #f9f9ff 0%, #fdf7ff 40%, #f5fff9 100%);
 }
 
 
@@ -83,7 +83,7 @@
   color: #03045e;
   font-family: 'Cinzel', serif;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 31px;
 }
 
 .rules-subtitle {
