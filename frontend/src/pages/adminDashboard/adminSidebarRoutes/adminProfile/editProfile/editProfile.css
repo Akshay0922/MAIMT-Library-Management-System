@@ -1,0 +1,96 @@
+.edit-profile-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.edit-profile-container h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 24px;
+  color: #333;
+}
+
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.edit-profile-image-section {
+  text-align: center;
+}
+
+.edit-profile-image {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
+
+.change-pic-btn {
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.change-pic-btn:hover {
+  background-color: #0056b3;
+}
+
+.edit-profile-fields label {
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 4px;
+}
+
+.edit-profile-fields input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.edit-profile-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.save-profile-btn,
+.cancel-btn {
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.save-profile-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.save-profile-btn:hover {
+  background-color: #218838;
+}
+
+.cancel-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #c82333;
+}

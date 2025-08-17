@@ -1,0 +1,274 @@
+.books-page {
+  font-family: 'Segoe UI', sans-serif;
+  padding: 60px;
+  background: linear-gradient(90deg, #f0f4ff, #fffaf0, #eafff1);
+}
+
+.books-page-top-part {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 73vh;
+  background: linear-gradient(135deg, #fce4ec, #e1f5fe);
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.top-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.text-block {
+  flex: 1;
+  max-width: 600px;
+  margin-left: 100px;
+}
+
+.text-block h1 {
+  font-size: 40px;
+  color: #fca311;
+  margin-bottom: 8px;
+  font-family: 'Cinzel', serif;
+}
+
+.text-block h2 {
+  font-size: 60px;
+  color: #03045e;
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-family: 'Cinzel', serif;
+}
+
+.text-block p {
+  font-size: 18px;
+  color: #333;
+}
+
+.image-block {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-books-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.home-ball {
+  position: absolute;
+  top: 10%;
+  width: 100px;
+  animation: float 3s ease-in-out infinite;
+  filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.2));
+}
+
+
+.books-page-heading{
+    text-align: center;
+    font-weight: 600;
+    color: #03045e;
+    margin-bottom: 31px;
+    font-family: 'Cinzel', serif;
+}
+
+.book-form {
+  padding: 31px;
+  border-radius: 0 22px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.btn-container {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.search-btn {
+  background-color: #03045e;
+  color: #fff;
+  padding: 9px 31px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.6s ease;
+}
+
+.search-btn:hover {
+  background-color: #fca311;
+  transform: translateY(-6px);
+}
+
+.table-wrapper {
+  margin-top: 30px;
+  overflow-x: auto;
+}
+
+.books-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.books-table thead {
+  background-color: #03045e;
+  font-weight: bold;
+  color: white;
+}
+
+.books-table th {
+  padding: 10px;
+  border: 1px solid white;
+}
+
+.books-table td {
+  padding: 10px;
+  border: 1px solid #f0f4ff;
+}
+
+.books-table tbody tr:hover {
+  background-color: #f1f8ff;
+}
+
+.no-books-msg {
+  text-align: center;
+  font-style: italic;
+  color: #888;
+  margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+  .book-form {
+    padding: 16px;
+  }
+
+  .search-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .top-content {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+    gap: 40px;
+    margin-top: 30px;
+  }
+
+  .text-block {
+    margin-left: 0;
+    max-width: 100%;
+    padding: 0 16px;
+  }
+
+  .text-block h1 {
+    font-size: 32px;
+  }
+
+  .text-block h2 {
+    font-size: 40px;
+  }
+
+  .text-block p {
+    font-size: 16px;
+  }
+
+  .search-books-image {
+    width: 80%;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .books-page {
+    padding: 20px;
+  }
+
+  .text-block h1 {
+    font-size: 24px;
+  }
+
+  .text-block h2 {
+    font-size: 32px;
+  }
+
+  .text-block p {
+    font-size: 14px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group label {
+    font-size: 14px;
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .search-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .books-table {
+    font-size: 12px;
+  }
+
+  .books-table th,
+  .books-table td {
+    padding: 6px;
+  }
+
+  .table-wrapper {
+    margin-top: 20px;
+  }
+
+  .no-books-msg {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+}
